@@ -13,7 +13,7 @@ function ChannelCard({ channel }: IChannelCardProps) {
         pathname: "/channels",
         query: { channelId: channel.id.channelId },
       }}
-      className="flex max-h justify-start items-start flex-col bg-gray-200 shadow-sm border border-gray-300"
+      className="flex max-h-52 justify-start items-start flex-col bg-gray-200 shadow-sm border border-gray-300 overflow-hidden"
     >
       <div className="w-full flex flex-col items-center justify-start gap-2 p-2 bg-gray-100 border-t-4  border-red-500">
         <figure className="w-16 rounded-full aspect-square overflow-hidden ">

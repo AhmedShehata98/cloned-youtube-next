@@ -38,11 +38,12 @@ function VideoCard({ videoData }: IVideoCardProps) {
         pathname: "/explore/watch",
       }}
       key={videoData?.snippet.title}
-      className="rounded-md shadow-md overflow-hidden"
+      className="rounded-md max-h-fit lg:max-h-52 shadow-md overflow-hidden"
+      title={videoData?.snippet.title}
     >
       <figure className="w-full h-fit aspect-video flex items-center justify-center rounded-sm">
         <img
-          src={getValidVideoURL(videoData?.snippet?.thumbnails).url}
+          src={videoData?.snippet?.thumbnails.medium.url}
           alt={videoData?.snippet?.title}
           className="w-full aspect-video object-cover object-center rounded-sm "
         />

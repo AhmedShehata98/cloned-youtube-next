@@ -4,5 +4,11 @@
   .yt-container {
     @apply w-full p-1 mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
   }
+  .hide-category-list {
+    @apply !hidden overflow-hidden opacity-0 pointer-events-none select-none -translate-x-full transition-all;
+  }
+  .show-category-list {
+    @apply !flex overflow-auto opacity-100 pointer-events-auto translate-x-0 transition-all;
+  }
 }
 @tailwind utilities;

@@ -18,25 +18,30 @@ const VideosList: NextPage = (props) => {
     query: { category },
   } = useRouter();
 
-  const { data, isFetched, isLoading, isSuccess, isError } =
-    useQuery<IYTVideosResponse>({
-      queryKey: [`categoryVideos`, category],
-      queryFn: () => videosByCategoryFetcher(category?.toString()),
-      retry: 2,
-    });
+  const {
+    data: categoryVideos,
+    isFetched,
+    isLoading,
+    isSuccess,
+    isError,
+  } = useQuery<IYTVideosResponse>({
+    queryKey: [`categoryVideos`, category],
+    queryFn: () => videosByCategoryFetcher(category?.toString()),
+    retry: 2,
+  });
 
   return (
     <>
       <Head>
         <title>Cloned Youtube | {category}</title>
       </Head>
-      <main className="min-h-screen w-full flex justify-center items-center bg-gray-100">
+      <main className="min-h-screen w-full flex justify-center items-center bg-gray-200">
         <section className="yt-container flex items-start justify-center">
           <LeftSidebar />
-          <div style={{ width: "calc(100% - 11.4rem)" }}>
+          <div className="w-full lg:w-[927px] mx-auto">
             <YTListWrapper
               title={category as string}
-              data={data!}
+              data={categoryVideos!}
               isFetched={isFetched}
               isLoading={isLoading}
               isError={isError}

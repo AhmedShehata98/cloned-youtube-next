@@ -39,7 +39,7 @@ function YTListWrapper({
   if (isLoading && !isFetched && !isSuccess) {
     return (
       <div className="w-full h-fit p-3 mb-3 flex flex-col gap-2">
-        <h4 className="mb-3 capitalize text-lg font-semibold">{title}</h4>
+        <h4 className="mb-3 capitalize text-lg font-semibold">{`${title} videos`}</h4>
         <ul
           className={`w-full h-fit ${
             notConnection ? "flex " : "grid"
@@ -52,11 +52,11 @@ function YTListWrapper({
   } else {
     return (
       <div className="w-full h-fit p-3 mb-3 flex flex-col gap-2">
-        <h4 className="mb-3 capitalize text-lg font-semibold">{title}</h4>
+        <h4 className="mb-3 capitalize text-lg font-semibold">{`${title} videos`}</h4>
         <ul
           className={`w-full h-fit ${
             notConnection ? "flex " : "grid"
-          }  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2`}
+          }  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}
         >
           {data.items.map((item) => {
             if (item.id.kind.split("#").includes("video")) {

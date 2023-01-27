@@ -4,7 +4,7 @@ import { categoryBar } from "@/utils/contants";
 
 function LeftSidebar() {
   return (
-    <aside className="w-56 h-screen max-h-screen flex flex-col items-start justify-start gap-3  border-r p-3">
+    <aside className="w-56 h-screen max-h-screen flex flex-col items-start justify-start gap-3 border-r p-3 hide-category-list lg:show-category-list">
       <ul className="w-full h-fit flex flex-col pl-2 mb-4">
         <Link href="/" className="flex gap-4 hover:text-red-500 mb-1 ">
           <span className="grid place-content-center text-xl">
@@ -20,15 +20,12 @@ function LeftSidebar() {
         {categoryBar.map((category) => (
           <Link
             key={category?.id}
-            // href={`/explore/${category?.label}`}
             href={{
               pathname: "/explore",
               query: {
                 category: category.label.toLocaleLowerCase(),
               },
             }}
-            // replace
-            id="dasdasd"
             className="flex gap-4 hover:text-red-500 mb-3 pl-2"
           >
             <span className="grid place-content-center text-lg">
