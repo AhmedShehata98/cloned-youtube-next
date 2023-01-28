@@ -10,5 +10,8 @@
   .show-category-list {
     @apply !flex overflow-auto opacity-100 pointer-events-auto translate-x-0 transition-all;
   }
+  .yt-card {
+    @apply flex flex-col rounded-md basis-full sm:basis-[48%] md:basis-[30%] lg:basis-[22.5%] shadow-md overflow-hidden transition-transform hover:-translate-y-2;
+  }
 }
 @tailwind utilities;

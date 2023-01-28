@@ -10,6 +10,7 @@ const ENDPOINTS = {
   videosDetails: "/videos",
   channelDetails: "/channels",
   channelVideos: "/search",
+  relatedVideos: "/search",
   platlistVideos: "/playlistItems",
   platlistDetails: "/playlists",
 };
@@ -53,6 +54,32 @@ const getChannelVideosOptions = (channelID: string) => ({
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });
+const getVideoDetailsOptions = (videoId: string) => ({
+  method: "GET",
+  url: `https://youtube-v31.p.rapidapi.com${ENDPOINTS.videosDetails}`,
+  params: {
+    part: "contentDetails,snippet,statistics",
+    id: videoId,
+  },
+  headers: {
+    "X-RapidAPI-Key": "c61be3ca42mshf758a4f25e72895p1ca436jsn841782450e33",
+    "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+  },
+});
+const getRelatedVideosOptions = (videoId: string) => ({
+  method: "GET",
+  url: `https://youtube-v31.p.rapidapi.com${ENDPOINTS.relatedVideos}`,
+  params: {
+    part: "id,snippet",
+    id: videoId,
+    maxResults: "15",
+    regionCode: "EG",
+  },
+  headers: {
+    "X-RapidAPI-Key": "c61be3ca42mshf758a4f25e72895p1ca436jsn841782450e33",
+    "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+  },
+});
 // deffinition of fetcher's function's "GETTING FROM API"
 const videosByCategoryFetcher = async (
   categoty: string = "New"
@@ -71,6 +98,16 @@ const getChannelVideosFetcher = async (channelId: string) => {
   const data = await res.data;
   return data;
 };
+const getVideoDetailsFetcher = async (videoId: string) => {
+  const res = await axios.request({ ...getVideoDetailsOptions(videoId) });
+  const data = await res.data;
+  return data;
+};
+const getRelatedVideosFetcher = async (videoId: string) => {
+  const res = await axios.request({ ...getRelatedVideosOptions(videoId) });
+  const data = await res.data;
+  return data;
+};
 
 // ------------------- exports functions and properties ------------------------
 
@@ -81,4 +118,6 @@ export {
   getByCategoryOptions,
   getChannelDetails,
   getChannelVideosFetcher,
+  getVideoDetailsFetcher,
+  getRelatedVideosFetcher,
 };

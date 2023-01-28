@@ -20,13 +20,6 @@ const ChannelDetails: NextPage<{ channelDetails: IYtChannel }> = (props) => {
   const {
     query: { channelId },
   } = useRouter();
-  // const { data, isLoading, isFetched, isError, isSuccess } =
-  //   useQuery<IYtChannel>({
-  //     queryKey: ["channel-details", channelId?.toString()],
-  //     queryFn: () => getChannelDetails(channelId as string),
-  //     retry: 2,
-  //     initialData: initialChannelDetails,
-  //   });
 
   const [
     { data: channelDetailsData, isFetched, isError, isLoading },
@@ -107,7 +100,7 @@ const ChannelDetails: NextPage<{ channelDetails: IYtChannel }> = (props) => {
                 <VideoCard key={nanoid(6)} videoData={video} />
               )}
               renderChannelItem={() => <div>asd</div>}
-              LoadingIndicator={<SkeletonVideoCard />}
+              LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
               ErrorComponent={<ErrorFetchingData />}
             />
           </div>

@@ -34,7 +34,7 @@ export default function Home(props: any) {
       <main className="min-h-screen w-full flex justify-center items-center bg-gray-200">
         <section className="yt-container flex flex-row items-start justify-start">
           <LeftSidebar />
-          <div style={{ width: "calc(100% - 11.4rem)" }}>
+          <div className="w-full lg:w-[927px] mx-auto">
             <YTListWrapper
               title="recommended"
               data={data}

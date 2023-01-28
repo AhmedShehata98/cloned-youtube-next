@@ -1,5 +1,4 @@
 import { IThumbnailProps, IThumbnailTypes, Iitem } from "@/Models/Youtube";
-import { nanoid } from "nanoid";
 import Link from "next/link";
 import React from "react";
 
@@ -7,38 +6,23 @@ interface IVideoCardProps {
   videoData: Iitem;
 }
 function VideoCard({ videoData }: IVideoCardProps) {
-  const getValidVideoURL = (thumbnails: IThumbnailTypes): IThumbnailProps => {
-    if (thumbnails.default) {
-      return thumbnails.default;
-    } else if (thumbnails.medium) {
-      return thumbnails.medium;
-    } else if (thumbnails.high) {
-      return thumbnails.high;
-    } else {
-      thumbnails.default;
-    }
-    return thumbnails.default;
-  };
   const gettingVideoTime = (puplishTime: string) => {
     const timeNow = new Date().getTime();
     const videoTime = new Date(puplishTime).getTime();
     const paste = timeNow - videoTime;
     return Math.floor(new Date(paste).getDay());
   };
-  if (videoData) {
-    console.log(videoData?.id.kind);
-  }
+
   return (
     <Link
       href={{
-        href: `/explore/watch`,
         query: {
-          videoId: videoData.id.videoId,
+          vidId: videoData.id.videoId,
         },
-        pathname: "/explore/watch",
+        pathname: "/watch",
       }}
       key={videoData?.snippet.title}
-      className="rounded-md max-h-fit lg:max-h-52 shadow-md overflow-hidden"
+      className="yt-card"
       title={videoData?.snippet.title}
     >
       <figure className="w-full h-fit aspect-video flex items-center justify-center rounded-sm">

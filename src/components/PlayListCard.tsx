@@ -16,7 +16,7 @@ function PlayListCard({ playListData }: IPlayListCardProps) {
         },
       }}
       key={playListData.snippet.channelId}
-      className="relative flex flex-col justify-between rounded-md shadow-sm border border-gray-300"
+      className="relative yt-card shadow-sm border border-gray-300"
     >
       <div
         className="relative w-full aspect-video"
@@ -34,7 +34,7 @@ function PlayListCard({ playListData }: IPlayListCardProps) {
           />
         </figure>
       </div>
-      <div className="w-full flex-1 flex flex-col p-2 bg-gray-200 border-t-4 border-red-400">
+      <div className="w-full flex-1 flex flex-col p-2 bg-gray-100 border-t-4 border-red-400">
         <b className="inline-block truncate max-w-full">
           {playListData.snippet.title}
         </b>
