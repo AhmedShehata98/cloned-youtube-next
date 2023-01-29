@@ -110,7 +110,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { vidId } = context.query;
 
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ["getVideoDetails", vidId],
     queryFn: () => getVideoDetailsFetcher(vidId as string),
   });

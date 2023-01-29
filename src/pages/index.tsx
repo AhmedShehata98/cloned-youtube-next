@@ -36,7 +36,7 @@ export default function Home(props: any) {
           <LeftSidebar />
           <div className="w-full lg:w-[927px] mx-auto">
             <YTListWrapper
-              title="recommended"
+              title={"recommended"}
               data={data}
               isFetched={isFetched}
               isLoading={isLoading}

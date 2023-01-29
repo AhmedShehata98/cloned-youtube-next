@@ -1,7 +1,32 @@
-import React from "react";
+import { useRouter } from "next/dist/client/router";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  MutableRefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Logo from "./Logo";
 
-function Headerbar() {
+interface IHeaderbarProps {
+  setSearchQuery: Dispatch<SetStateAction<string | undefined>>;
+}
+function Headerbar({ setSearchQuery }: IHeaderbarProps) {
+  const [query, setQuery] = useState<string>();
+  const { push } = useRouter();
+
+  function handleSearch(_ev?: MouseEvent | KeyboardEvent) {
+    const target = _ev?.target as HTMLFormElement;
+    target?.preventDefault();
+    push({
+      pathname: "/results",
+      query: { search_query: query?.toLowerCase() },
+    });
+  }
+
   return (
     <header className="sticky top-0 z-40 w-full h-14 flex justify-between items-center bg-white border-b px-2 lg:px-0">
       <section className="yt-container flex justify-start items-center">
@@ -11,19 +36,36 @@ function Headerbar() {
           </button>
           <Logo />
         </div>
-        <form className="w-3/5 lg:w-2/5 flex items-center justify-start bg-slate-100 px-3">
+        <form
+          className="w-3/5 lg:w-2/5 flex items-center justify-start bg-slate-100"
+          onSubmit={(ev: FormEvent<HTMLFormElement>) => {
+            ev.preventDefault();
+            push({
+              pathname: "/results",
+              query: { search_query: query?.toLowerCase() },
+            });
+          }}
+        >
           <label
             htmlFor="search-yt-videos"
             className="w-full flex items-center justify-between gap-2"
           >
-            <span className="text-lg text-gray-500 flex justify-center items-center">
+            <button
+              type="button"
+              onClick={() => handleSearch()}
+              className="text-lg text-gray-500 flex justify-center items-center hover:bg-gray-300 py-2 px-3"
+            >
               <i className="fi fi-rr-search leading-3"></i>
-            </span>
+            </button>
             <input
               className="flex-1 bg-gray-100 py-1 px-3 focus:outline-none"
               type="search"
               name="search-yt-videos"
               id="search-yt-videos"
+              value={query}
+              onChange={(ev: ChangeEvent<HTMLInputElement>) =>
+                setQuery(ev.target.value)
+              }
             />
           </label>
         </form>

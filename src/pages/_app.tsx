@@ -7,15 +7,17 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
+  const [searchQuery, setSearchQuery] = useState<string>();
+
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Headerbar />
-        <Component {...pageProps} />
+        <Headerbar setSearchQuery={setSearchQuery} />
+        <Component {...pageProps} search={searchQuery} />
         <ReactQueryDevtools panelPosition="bottom" />
       </Hydrate>
     </QueryClientProvider>

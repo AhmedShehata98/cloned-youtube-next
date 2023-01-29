@@ -30,12 +30,6 @@ function YTListWrapper({
   const dummyArrayofVideos = new Array(20).fill("dummyVideoArray");
   const notConnection = !isFetched && isError && !isLoading;
 
-  if (isFetched) {
-    data!.items.forEach((item) =>
-      item.id.kind.split("#").includes("playlist") ? console.log(item) : ""
-    );
-  }
-
   if (isLoading && !isFetched && !isSuccess) {
     return (
       <div className="w-full h-fit p-3 mb-3 flex flex-col gap-2">
@@ -45,7 +39,7 @@ function YTListWrapper({
             notConnection ? "flex " : "grid"
           }  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2`}
         >
-          {dummyArrayofVideos.map((vid) => LoadingIndicator!(vid.id))}
+          {dummyArrayofVideos.map(({ _, idx }) => LoadingIndicator!(idx))}
         </ul>
       </div>
     );
