@@ -25,7 +25,7 @@ const getByCategoryOptions = (query: string) => ({
     order: "date",
   },
   headers: {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY_Backup,
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });
@@ -37,7 +37,7 @@ const channelEndpointOptions = (channelId: string) => ({
     id: channelId,
   },
   headers: {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY_Backup,
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });
@@ -51,7 +51,7 @@ const getChannelVideosOptions = (channelID: string) => ({
     maxResults: "25",
   },
   headers: {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY_Backup,
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });
@@ -63,7 +63,7 @@ const getVideoDetailsOptions = (videoId: string) => ({
     id: videoId,
   },
   headers: {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY_Backup,
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });
@@ -77,7 +77,7 @@ const getRelatedVideosOptions = (videoId: string) => ({
     regionCode: "EG",
   },
   headers: {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY_Backup,
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });

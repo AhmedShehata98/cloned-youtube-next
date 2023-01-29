@@ -9,7 +9,7 @@ export const categoryBar = [
   {
     id: nanoid(3),
     icon: "fi-rr-book-open-cover",
-    label: "Quraan",
+    label: "Quran",
   },
 
   {
