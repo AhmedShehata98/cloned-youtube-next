@@ -75,15 +75,4 @@ export function formatElapsedTime(publishedTime: string) {
   if (seconds >= 60) return `${minutes} minutes ago`;
   if (minutes <= 60) return `${minutes} minutes ago`;
   if (minutes >= 60) return `${hours} hours ago`;
-
-  // if (seconds <= 60) {
-  //   return `${seconds} seconds ago`;
-  // } else if (seconds >= 60) {
-  //   return `${minutes} minutes ago`;
-  // } else if (minutes <= 60) {
-  //   return `${minutes} minutes ago`;
-  // } else if (minutes >= 60) {
-  //   return `${hours} hours ago`;
-  // }
-  // return `${hours} hours ago`;
 }

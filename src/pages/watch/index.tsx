@@ -15,7 +15,6 @@ import Head from "next/head";
 import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 
 const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
-  const videoDetailsInitialData = props.videoData;
   const {
     query: { vidId },
   } = useRouter();
