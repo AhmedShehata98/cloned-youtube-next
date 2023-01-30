@@ -22,10 +22,12 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
   function handleSearch(_ev?: MouseEvent | KeyboardEvent) {
     const target = _ev?.target as HTMLFormElement;
     target?.preventDefault();
-    push({
-      pathname: "/results",
-      query: { search_query: query?.toLowerCase() },
-    });
+    if (query) {
+      push({
+        pathname: "/results",
+        query: { search_query: query?.toLowerCase() },
+      });
+    }
   }
   function handlerShowSidebar(_ev: MouseEvent) {
     _ev.preventDefault();
@@ -46,13 +48,10 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
           <Logo />
         </div>
         <form
-          className="w-3/5 lg:w-2/5 flex items-center justify-start bg-slate-100"
+          className="w-3/5 lg:w-2/5 flex items-center justify-start bg-zinc-200"
           onSubmit={(ev: FormEvent<HTMLFormElement>) => {
             ev.preventDefault();
-            push({
-              pathname: "/results",
-              query: { search_query: query?.toLowerCase() },
-            });
+            handleSearch();
           }}
         >
           <label
@@ -62,12 +61,12 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
             <button
               type="button"
               onClick={() => handleSearch()}
-              className="text-lg text-gray-500 flex justify-center items-center hover:bg-gray-300 py-2 px-3"
+              className="text-lg text-gray-500 flex justify-center items-center hover:bg-stone-400 hover:text-black py-2 px-3"
             >
               <i className="fi fi-rr-search leading-3"></i>
             </button>
             <input
-              className="flex-1 bg-gray-100 py-1 px-3 focus:outline-none"
+              className="flex-1 bg-zinc-200 py-1 px-3 focus:outline-none"
               type="search"
               name="search-yt-videos"
               id="search-yt-videos"

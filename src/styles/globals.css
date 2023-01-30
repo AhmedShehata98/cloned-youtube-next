@@ -24,5 +24,8 @@
   .sidebar-menu {
     @apply absolute lg:sticky lg:top-16 z-20 w-full lg:w-56 h-screen max-h-screen -translate-x-[150%] lg:translate-x-0 opacity-25 scale-95 lg:scale-100 lg:opacity-100 duration-300 flex flex-col items-start justify-start border-r lg:py-3 bg-gray-900 bg-opacity-50 lg:bg-opacity-100 lg:bg-transparent;
   }
+  .hide-loading-screen {
+    @apply opacity-0 pointer-events-none translate-x-1;
+  }
 }
 @tailwind utilities;
