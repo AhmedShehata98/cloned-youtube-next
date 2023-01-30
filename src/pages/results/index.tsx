@@ -42,7 +42,7 @@ const SearchResults = ({ searchQueryInitialData }: ISearchResultsProps) => {
 
       <div className="w-full lg:w-[927px] mx-auto">
         <YTSearchResultsList
-          title={`search about : ${search_query}`}
+          title={`${search_query}`}
           data={searchResults}
           ErrorComponent={() => <ErrorFetchingData />}
           LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}

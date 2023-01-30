@@ -27,9 +27,14 @@ function YTSearchResultsList({
 }: IYTSearchResultsListProps) {
   if (isFetched && !isLoading) {
     return (
-      <div>
-        <h3 className="font-semibold text-lg uppercase mb-6 mt-3">{title}</h3>
-        <ul className="w-full grid grid-flow-row gap-3">
+      <div className="px-3 flex flex-col mt-2">
+        <span className="flex mb-6 mt-3 ">
+          <h3 className="font-semibold text-lg uppercase text-red-600 mr-3">
+            search about :{" "}
+          </h3>
+          <h3 className="font-semibold text-lg">{title}</h3>
+        </span>
+        <ul className="w-full grid grid-flow-row gap-4">
           {data.items.map((item) => {
             return renderVideoItem(item);
           })}

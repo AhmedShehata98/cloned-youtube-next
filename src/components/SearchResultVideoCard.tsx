@@ -27,8 +27,10 @@ function SearchResultVideoCard({
           alt={snippet.channelId + "-img"}
         />
       </figure>
-      <div className="w-[65%] flex flex-col justify-between px-4 md:px-0">
-        <h4 className="font-medium text-lg mb-3">{snippet.title}</h4>
+      <div className="lg:w-[65%] flex flex-col justify-between px-4 md:px-0 py-2">
+        <h4 className="leading-5 h-11 overflow-hidden font-medium text-lg mb-3">
+          {snippet.title}
+        </h4>
         <small className="opacity-70 font-medium">
           {formatElapsedTime(snippet.publishTime)}
         </small>

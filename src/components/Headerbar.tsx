@@ -5,6 +5,7 @@ import React, {
   FormEvent,
   MouseEvent,
   SetStateAction,
+  useEffect,
   useState,
 } from "react";
 import Logo from "./Logo";
@@ -15,6 +16,9 @@ interface IHeaderbarProps {
 function Headerbar({ setShowSidebar }: IHeaderbarProps) {
   const [query, setQuery] = useState<string>();
   const [showInputSearch, setshowInputSearch] = useState<boolean>(false);
+  const [innerWidth, setInnerWidth] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
   const { push } = useRouter();
 
   function handleSearch(_ev?: MouseEvent | KeyboardEvent) {
@@ -35,10 +39,22 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
     setshowInputSearch((current) => !current);
   }
 
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setInnerWidth(window.innerWidth);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (innerWidth >= 770) {
+      setshowInputSearch(false);
+    }
+  }, [innerWidth]);
+
   return (
     <header className="yt-header">
       <section className="yt-container flex justify-start items-center">
-        <div className="flex items-center justify-start gap-3 lg:gap-6 w-fit lg:w-3/12 pl-1 pr-3">
+        <div className="flex items-center justify-start gap-3 lg:gap-6 w-fit lg:w-1/5 pl-1 pr-3">
           <button
             type="button"
             className="grid place-content-center lg:hidden"
@@ -49,7 +65,7 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
           {!showInputSearch && <Logo />}
         </div>
         <form
-          className={`flex-1 hidden lg:w-2/5 lg:flex items-center justify-start ${
+          className={`flex-1 hidden lg:flex-none lg:w-2/5 lg:flex items-center justify-start rounded-full mx-2 overflow-hidden ${
             showInputSearch && "!flex"
           } bg-zinc-200`}
           onSubmit={(ev: FormEvent<HTMLFormElement>) => {
@@ -64,7 +80,7 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
             <button
               type="button"
               onClick={() => handleSearch()}
-              className="text-lg text-gray-500 flex justify-center items-center hover:bg-stone-400 hover:text-black py-2 px-3"
+              className="text-lg text-gray-500 flex justify-center items-center hover:bg-stone-300 hover:text-black py-2 pl-5 pr-4"
             >
               <i className="fi fi-rr-search leading-3"></i>
             </button>
