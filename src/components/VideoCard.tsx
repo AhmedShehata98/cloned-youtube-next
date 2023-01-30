@@ -32,29 +32,20 @@ function VideoCard({ videoData }: IVideoCardProps) {
           className="w-full aspect-video object-cover object-center rounded-sm "
         />
       </figure>
-      <div className="rounded-sm px-3 py-2 bg-gray-100">
-        <b className="inline-block mb-2 max-w-full truncate overflow-hidden text-ellipsis">
-          {videoData?.snippet?.title}
-        </b>
-        <div>
-          <span className="flex items-center justify-start gap-2">
-            {videoData?.kind && (
-              <i className="fi fi-sr-badge-check leading-3 text-slate-500"></i>
-            )}
-            <small className="text-slate-600 capitalize font-medium">
-              {videoData?.snippet?.channelTitle}
-            </small>
-          </span>
-          <span className="flex justify-between">
-            {/* <small className="font-medium text-gray-400">
-              {`${videoData?.snippet.} views`}
-            </small> */}
-            <small className="text-gray-500">
-              {gettingVideoTime(videoData?.snippet?.publishTime) +
-                " " +
-                "days ago"}
-            </small>
-          </span>
+      <div className="flex justify-start items-start rounded-sm px-1 py-2 bg-gray-100 gap-1">
+        <span className="w-[18%] aspect-square bg-red-300 rounded-full flex justify-center items-center">
+          <i className="fi fi-rr-desktop-wallpaper leading-3 text-slate-900"></i>
+        </span>
+        <div className="w-4/5 flex flex-col">
+          <b className="inline-block mb-2 text-sm leading-4 h-8 overflow-hidden">
+            {videoData?.snippet?.title}
+          </b>
+          <p className="text-slate-600 capitalize font-medium">
+            {videoData?.snippet?.channelTitle}
+          </p>
+          <small className="text-gray-500">
+            {videoData?.snippet?.publishTime}
+          </small>
         </div>
       </div>
     </Link>

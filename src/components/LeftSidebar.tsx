@@ -21,7 +21,7 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
     }
   }, [show]);
   return (
-    <aside ref={sidebarRef} className="sidebar-menu">
+    <aside ref={sidebarRef} className=" sidebar-menu">
       <div className="w-2/3 lg:w-full bg-white lg:bg-transparent">
         <ul className="h-fit flex flex-col pl-2 my-2">
           <Link href="/" className="flex gap-4 hover:text-red-500 mb-1 ">

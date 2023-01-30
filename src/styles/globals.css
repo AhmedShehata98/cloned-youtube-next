@@ -13,7 +13,7 @@
     @apply !translate-x-0 !opacity-100 !scale-100 transition-all;
   }
   .yt-card {
-    @apply flex flex-col rounded-md basis-full sm:basis-[48%] md:basis-[30%] lg:basis-[22.5%] shadow-md overflow-hidden transition-transform hover:-translate-y-2;
+    @apply flex flex-col rounded-sm basis-full sm:basis-[48%] md:basis-[30%] lg:basis-[23%] shadow-sm overflow-hidden transition-transform duration-500 hover:-translate-y-1.5;
   }
   .prevent-scroll {
     @apply max-h-screen fixed;
@@ -22,7 +22,7 @@
     @apply sticky top-0 z-40 w-full h-14 flex justify-between items-center bg-white shadow-sm border-b px-2 lg:px-0;
   }
   .sidebar-menu {
-    @apply absolute lg:relative z-20 w-full lg:w-56 h-screen max-h-screen -translate-x-[150%] lg:translate-x-0 opacity-25 scale-95 lg:scale-100 lg:opacity-100 duration-300 flex flex-col items-start justify-start border-r lg:py-3 bg-gray-900 bg-opacity-50 lg:bg-opacity-100 lg:bg-transparent;
+    @apply absolute lg:sticky lg:top-16 z-20 w-full lg:w-56 h-screen max-h-screen -translate-x-[150%] lg:translate-x-0 opacity-25 scale-95 lg:scale-100 lg:opacity-100 duration-300 flex flex-col items-start justify-start border-r lg:py-3 bg-gray-900 bg-opacity-50 lg:bg-opacity-100 lg:bg-transparent;
   }
 }
 @tailwind utilities;
