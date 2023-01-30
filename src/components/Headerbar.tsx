@@ -4,10 +4,7 @@ import React, {
   Dispatch,
   FormEvent,
   MouseEvent,
-  MutableRefObject,
   SetStateAction,
-  useEffect,
-  useRef,
   useState,
 } from "react";
 import Logo from "./Logo";
@@ -17,6 +14,7 @@ interface IHeaderbarProps {
 }
 function Headerbar({ setShowSidebar }: IHeaderbarProps) {
   const [query, setQuery] = useState<string>();
+  const [showInputSearch, setshowInputSearch] = useState<boolean>(false);
   const { push } = useRouter();
 
   function handleSearch(_ev?: MouseEvent | KeyboardEvent) {
@@ -33,22 +31,27 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
     _ev.preventDefault();
     setShowSidebar((curr) => !curr);
   }
+  function handleShowSearchInput() {
+    setshowInputSearch((current) => !current);
+  }
 
   return (
     <header className="yt-header">
       <section className="yt-container flex justify-start items-center">
-        <div className="flex items-center justify-start gap-6 w-1/3 md:w-3/12 pl-1">
+        <div className="flex items-center justify-start gap-3 lg:gap-6 w-fit lg:w-3/12 pl-1 pr-3">
           <button
             type="button"
-            className="lg:hidden"
+            className="grid place-content-center lg:hidden"
             onClick={(ev: MouseEvent) => handlerShowSidebar(ev)}
           >
-            <i className="fi fi-rr-menu-burger leading-3 text-2xl"></i>
+            <i className="fi fi-rr-menu-burger leading-3 text-3xl"></i>
           </button>
-          <Logo />
+          {!showInputSearch && <Logo />}
         </div>
         <form
-          className="w-3/5 lg:w-2/5 flex items-center justify-start bg-zinc-200"
+          className={`flex-1 hidden lg:w-2/5 lg:flex items-center justify-start ${
+            showInputSearch && "!flex"
+          } bg-zinc-200`}
           onSubmit={(ev: FormEvent<HTMLFormElement>) => {
             ev.preventDefault();
             handleSearch();
@@ -78,14 +81,28 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
             />
           </label>
         </form>
-        <div className="w-0 lg:w-1/4 overflow-hidden flex justify-center items-center gap-2 ml-auto">
-          <button className="w-9 grid place-content-center aspect-square bg-gray-200 border border-slate-300 rounded-full hover:bg-gray-300">
+        <div className="w-fit overflow-hidden flex justify-center items-center gap-2 ml-auto">
+          <button
+            className="w-8 grid lg:hidden place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 rounded-full hover:bg-gray-300 ml-2"
+            onClick={handleShowSearchInput}
+          >
+            {showInputSearch ? (
+              <i className="fi fi-rr-arrow-small-left leading-3 select-none pointer-events-none text-2xl"></i>
+            ) : (
+              <i className="fi fi-rr-search leading-3 select-none pointer-events-none "></i>
+            )}
+          </button>
+          <button className="hidden w-8 md:grid place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 rounded-full hover:bg-gray-300">
             <i className="fi fi-sr-bell leading-3 select-none pointer-events-none"></i>
           </button>
-          <button className="w-9 grid place-content-center aspect-square bg-gray-200 border  border-slate-300 rounded-full hover:bg-gray-300">
+          <button className="hidden w-8 md:grid place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 rounded-full hover:bg-gray-300">
             <i className="fi fi-sr-comment leading-3 select-none pointer-events-none"></i>
           </button>
-          <button className="w-fit h-8 flex items-center justify-center gap-2 ml-4 px-3 rounded-full text-slate-700 border border-slate-400 bg-gray-200">
+          <button
+            className={`w-fit h-8 flex items-center justify-center gap-2 lg:ml-4 lg:px-3 rounded-full text-slate-900 border border-slate-200 bg-gray-200 ${
+              showInputSearch && "hidden"
+            }`}
+          >
             <span className="w-8 h-full text-lg grid place-content-center">
               <i className="fi fi-sr-fill leading-3 select-none pointer-events-none"></i>
             </span>
