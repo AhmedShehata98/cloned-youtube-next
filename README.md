@@ -10,13 +10,13 @@ youtube is a youtube clone application from original " Google YouTube " With mos
 
 <br>
 
-- show youtube videos .
+- Watch youtube videos .
 
 - Read comments and description on videos content .
 
-- get youtube channels content and videos .
+- Get youtube channels content and videos details .
 
-- can explore different content quickly with sidebar categories .
+- Can explore different content quickly with sidebar categories .
 
 - You can also search for youtube videos or channels using input search .
 
