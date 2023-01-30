@@ -3,6 +3,7 @@ import React, {
   ChangeEvent,
   Dispatch,
   FormEvent,
+  MouseEvent,
   MutableRefObject,
   SetStateAction,
   useEffect,
@@ -12,9 +13,9 @@ import React, {
 import Logo from "./Logo";
 
 interface IHeaderbarProps {
-  setSearchQuery: Dispatch<SetStateAction<string | undefined>>;
+  setShowSidebar: Dispatch<SetStateAction<boolean>>;
 }
-function Headerbar({ setSearchQuery }: IHeaderbarProps) {
+function Headerbar({ setShowSidebar }: IHeaderbarProps) {
   const [query, setQuery] = useState<string>();
   const { push } = useRouter();
 
@@ -26,12 +27,20 @@ function Headerbar({ setSearchQuery }: IHeaderbarProps) {
       query: { search_query: query?.toLowerCase() },
     });
   }
+  function handlerShowSidebar(_ev: MouseEvent) {
+    _ev.preventDefault();
+    setShowSidebar((curr) => !curr);
+  }
 
   return (
-    <header className="sticky top-0 z-40 w-full h-14 flex justify-between items-center bg-white border-b px-2 lg:px-0">
+    <header className="yt-header">
       <section className="yt-container flex justify-start items-center">
-        <div className="flex items-center justify-start gap-6 w-1/3 md:w-3/12">
-          <button type="button">
+        <div className="flex items-center justify-start gap-6 w-1/3 md:w-3/12 pl-1">
+          <button
+            type="button"
+            className="lg:hidden"
+            onClick={(ev: MouseEvent) => handlerShowSidebar(ev)}
+          >
             <i className="fi fi-rr-menu-burger leading-3 text-2xl"></i>
           </button>
           <Logo />
@@ -62,6 +71,7 @@ function Headerbar({ setSearchQuery }: IHeaderbarProps) {
               type="search"
               name="search-yt-videos"
               id="search-yt-videos"
+              placeholder="search for videos or channels ..."
               value={query}
               onChange={(ev: ChangeEvent<HTMLInputElement>) =>
                 setQuery(ev.target.value)
@@ -76,11 +86,10 @@ function Headerbar({ setSearchQuery }: IHeaderbarProps) {
           <button className="w-9 grid place-content-center aspect-square bg-gray-200 border  border-slate-300 rounded-full hover:bg-gray-300">
             <i className="fi fi-sr-comment leading-3 select-none pointer-events-none"></i>
           </button>
-          <button className="w-fit h-9 flex items-center justify-center gap-2 ml-4 px-3 rounded-3xl text-cyan-700 border border-slate-400 bg-gray-200">
-            <span className="w-7 h-7 text-lg grid place-content-center">
-              <i className="fi fi-rr-user leading-3 select-none pointer-events-none"></i>
+          <button className="w-fit h-8 flex items-center justify-center gap-2 ml-4 px-3 rounded-full text-slate-700 border border-slate-400 bg-gray-200">
+            <span className="w-8 h-full text-lg grid place-content-center">
+              <i className="fi fi-sr-fill leading-3 select-none pointer-events-none"></i>
             </span>
-            <p>Guest user</p>
           </button>
         </div>
       </section>

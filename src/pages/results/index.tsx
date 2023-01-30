@@ -27,6 +27,7 @@ const SearchResults = ({ searchQueryInitialData }: ISearchResultsProps) => {
     isFetched,
     isError,
     isLoading,
+    isPaused,
   } = useQuery({
     queryKey: ["search_results", search_query],
     queryFn: () => videosByCategoryFetcher(search_query as string),
@@ -38,29 +39,25 @@ const SearchResults = ({ searchQueryInitialData }: ISearchResultsProps) => {
       <Head>
         <title>{search_query} - YouTube Cloned </title>
       </Head>
-      <main className="min-h-screen w-full flex justify-center items-center bg-gray-200">
-        <section className="yt-container flex flex-row items-start justify-start">
-          <LeftSidebar />
-          <div className="w-full lg:w-[927px] mx-auto">
-            <YTSearchResultsList
-              title={`search about : ${search_query}`}
-              data={searchResults}
-              ErrorComponent={() => <ErrorFetchingData />}
-              LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
-              isError={isError}
-              isFetched={isFetched}
-              isLoading={isLoading}
-              renderChannelItem={(channel) => <ChannelCard channel={channel} />}
-              renderPlaylistItem={(playlist) => (
-                <PlayListCard playListData={playlist} />
-              )}
-              renderVideoItem={(video) => (
-                <SearchResultVideoCard SearchResultData={video} />
-              )}
-            />
-          </div>
-        </section>
-      </main>
+
+      <div className="w-full lg:w-[927px] mx-auto">
+        <YTSearchResultsList
+          title={`search about : ${search_query}`}
+          data={searchResults}
+          ErrorComponent={() => <ErrorFetchingData />}
+          LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
+          isError={isError}
+          isFetched={isFetched}
+          isLoading={isLoading}
+          renderChannelItem={(channel) => <ChannelCard channel={channel} />}
+          renderPlaylistItem={(playlist) => (
+            <PlayListCard playListData={playlist} />
+          )}
+          renderVideoItem={(video) => (
+            <SearchResultVideoCard SearchResultData={video} />
+          )}
+        />
+      </div>
     </>
   );
 };
