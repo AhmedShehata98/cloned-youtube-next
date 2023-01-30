@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </section>
         </main>
-        <ReactQueryDevtools panelPosition="bottom" />
+        {/* <ReactQueryDevtools panelPosition="bottom" /> */}
       </Hydrate>
     </QueryClientProvider>
   );
