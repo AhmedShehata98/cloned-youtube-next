@@ -24,19 +24,27 @@ function YTSearchResultsList({
   LoadingIndicator,
   renderChannelItem,
   renderVideoItem,
+  renderPlaylistItem,
 }: IYTSearchResultsListProps) {
+  data?.items
+    ? data?.items.forEach((item) => console.log(item.id.kind))
+    : undefined;
+
   if (isFetched && !isLoading) {
     return (
       <div className="px-3 flex flex-col mt-2">
         <span className="flex mb-6 mt-3 ">
           <h3 className="font-semibold text-lg uppercase text-red-600 mr-3">
-            search about :{" "}
+            search about :
           </h3>
           <h3 className="font-semibold text-lg">{title}</h3>
         </span>
         <ul className="w-full grid grid-flow-row gap-4">
           {data.items.map((item) => {
-            return renderVideoItem(item);
+            const kindType = item.id.kind.split("#");
+            if (kindType.includes("video")) return renderVideoItem(item);
+            if (kindType.includes("playlist")) return renderPlaylistItem(item);
+            if (kindType.includes("channel")) return renderChannelItem(item);
           })}
         </ul>
       </div>

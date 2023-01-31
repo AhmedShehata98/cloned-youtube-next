@@ -13,36 +13,51 @@ function SearchResultVideoCard({
   },
 }: ISearchResultVideoCardProps) {
   return (
-    <Link
-      href={{
-        pathname: "/watch",
-        query: { vidId: videoId },
-      }}
-      className="flex flex-col md:flex-row gap-2 shadow bg-zinc-50 border border-gray-300 rounded overflow-hidden"
-    >
-      <figure className="relative w-full aspect-video sm:py-3 lg:py-0 md:w-[30%] flex items-center justify-center bg-gray-100">
+    <div className="flex flex-col md:flex-row gap-2 bg-zinc-100 border border-gray-400 rounded overflow-hidden">
+      <Link
+        href={{
+          pathname: "/watch",
+          query: { vidId: videoId },
+        }}
+        className="relative w-full aspect-video md:max-w-[35%] md:min-w-[35%] h-1/2 md:h-auto overflow-hidden transition-all grid place-content-center place-items-center bg-gray-100"
+      >
         <img
-          className="max-w-full aspect-video object-cover"
+          className="min-w-full aspect-video object-cover object-center"
           src={snippet.thumbnails.high.url}
           alt={snippet.channelId + "-img"}
         />
-      </figure>
-      <div className="lg:w-[65%] flex flex-col justify-between px-4 md:px-0 py-2">
-        <h4 className="leading-5 h-11 overflow-hidden font-medium text-lg mb-3">
+      </Link>
+      <div className="lg:flex-1 flex flex-col justify-between px-4 md:px-0 py-2">
+        <Link
+          href={{
+            pathname: "/watch",
+            query: { vidId: videoId },
+          }}
+          className="leading-5 h-10 overflow-hidden font-medium text-lg mb-1"
+        >
           {snippet.title}
-        </h4>
+        </Link>
         <small className="opacity-70 font-medium">
           {formatElapsedTime(snippet.publishTime)}
         </small>
         <span className="flex justify-start items-center gap-2">
           <i className="fi fi-rr-desktop-wallpaper leading-3 bg-slate-900 text-red-400 p-2 rounded-full aspect-square inline-block"></i>
-          <p className="capitalize font-semibold opacity-80 text-sm">
+          <Link
+            href={{
+              pathname: "/channels",
+              query: {
+                channelId: snippet.channelId,
+              },
+            }}
+            className="uppercase font-semibold opacity-80 text-sm"
+            title={`Go to ${snippet.channelTitle} channel`}
+          >
             {snippet.channelTitle}
-          </p>
+          </Link>
         </span>
         <small>{snippet.description}</small>
       </div>
-    </Link>
+    </div>
   );
 }
 

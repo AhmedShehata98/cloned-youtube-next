@@ -13,6 +13,8 @@ import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 import YTSearchResultsList from "@/components/YTSearchResultsList";
 import { GetServerSideProps } from "next";
 import { IYTVideosResponse } from "@/Models/Youtube";
+import PlayListSearchResultCard from "@/components/PlayListSearchResultCard";
+import ChannelSearchResultCard from "@/components/ChannelSearchResultCard";
 
 interface ISearchResultsProps {
   searchQueryInitialData: IYTVideosResponse;
@@ -49,9 +51,11 @@ const SearchResults = ({ searchQueryInitialData }: ISearchResultsProps) => {
           isError={isError}
           isFetched={isFetched}
           isLoading={isLoading}
-          renderChannelItem={(channel) => <ChannelCard channel={channel} />}
+          renderChannelItem={(channel) => (
+            <ChannelSearchResultCard channelResultData={channel} />
+          )}
           renderPlaylistItem={(playlist) => (
-            <PlayListCard playListData={playlist} />
+            <PlayListSearchResultCard playListData={playlist} />
           )}
           renderVideoItem={(video) => (
             <SearchResultVideoCard SearchResultData={video} />
