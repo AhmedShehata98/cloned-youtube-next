@@ -25,15 +25,6 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
     }
   }, [show]);
 
-  useEffect(() => {
-    if (notPages && !show) {
-      sidebarRef.current?.classList.add("hidden");
-    }
-    if (notPages && show) {
-      sidebarRef.current?.classList.remove("hidden");
-    }
-  }, [show, notPages]);
-
   return (
     <aside ref={sidebarRef} className={`sidebar-menu`}>
       <div className="w-2/3 lg:w-full h-screen lg:h-auto bg-white lg:bg-transparent">

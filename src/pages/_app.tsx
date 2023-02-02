@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const [LoadingScreen, setLoadingScreen] = useState<boolean>(false);
-  const { events, isReady } = useRouter();
+  const { events, isReady, pathname } = useRouter();
 
   useEffect(() => {
     events.on("routeChangeStart", () => {
@@ -26,7 +26,6 @@ export default function App({ Component, pageProps }: AppProps) {
     events.on("routeChangeComplete", () => {
       setLoadingScreen(false);
     });
-    console.log(LoadingScreen);
   }, [isReady, events]);
 
   return (
@@ -36,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* <AppDrawer showing={showSidebar} /> */}
         <main className="min-h-screen w-full flex justify-center items-center bg-gray-50">
           <section className="yt-container flex flex-row items-start justify-start">
-            <LeftSidebar show={showSidebar} />
+            {!pathname.includes("/watch") && <LeftSidebar show={showSidebar} />}
             <Component {...pageProps} />
           </section>
         </main>

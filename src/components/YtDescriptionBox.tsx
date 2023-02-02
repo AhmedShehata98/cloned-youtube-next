@@ -51,19 +51,22 @@ function YtDescriptionBox({
         >
           {filteredYtDescriptionsArr &&
             filteredYtDescriptionsArr.map((text) => {
-              const isLinks = text.startsWith("http");
-              return isLinks ? (
-                <>
+              const isLink = text.includes("https") || text.includes("http");
+              const theLink = text.slice(text.indexOf("http"));
+
+              return isLink ? (
+                <span className="flex gap-1 justify-start items-center">
+                  <small className="opacity-90">{text}</small>
                   <a
                     className="text-sm text-sky-600"
-                    href={text}
+                    href={theLink}
                     target={"_blank"}
-                    referrerPolicy="no-referrer"
+                    rel="noreferrer"
                   >
-                    {text}
+                    {theLink}
                   </a>
                   <br />
-                </>
+                </span>
               ) : (
                 <>
                   <small className="opacity-90">{text}</small>

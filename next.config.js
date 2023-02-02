@@ -7,6 +7,9 @@ const nextConfig = {
   publicRuntimeConfig: {
     NEXT_PUBLIC_RAPID_API_KEY: process.env.NEXT_PUBLIC_RAPID_API_KEY,
   },
+  compiler: {
+    removeConsole: true,
+  },
 };
 
 module.exports = nextConfig;
