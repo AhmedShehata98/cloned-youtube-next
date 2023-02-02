@@ -30,5 +30,11 @@
   .yt-playlist-search {
     @apply relative w-full flex flex-col md:flex-row items-start justify-start gap-2  border border-gray-400 rounded overflow-hidden;
   }
+  .sidebar-link {
+    @apply flex gap-4 hover:text-red-500 mb-2 transition-all pl-2 mr-2 py-1.5 rounded-full;
+  }
+  .sidebar-link-active {
+    @apply bg-red-500 !text-white opacity-100 px-4 font-semibold;
+  }
 }
 @tailwind utilities;

@@ -9,8 +9,8 @@ interface ILeftSidebarProps {
 function LeftSidebar({ show }: ILeftSidebarProps) {
   const sidebarRef = useRef<HTMLElement | null>(null);
 
-  const { pathname } = useRouter();
-  const notPages = pathname.includes("/watch");
+  const { query } = useRouter();
+  // const notPages = pathname.includes("/watch");
 
   useEffect(() => {
     if (show) {
@@ -39,28 +39,33 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
           </Link>
         </ul>
         <ul className="h-fit flex flex-col pb-4">
-          {!notPages && (
-            <h5 className="font-semibold capitalize text-lg mb-3">explore </h5>
-          )}
-          {categoryBar.map((category) => (
-            <Link
-              key={category?.id}
-              href={{
-                pathname: "/explore",
-                query: {
-                  category: category.label.toLocaleLowerCase(),
-                },
-              }}
-              className="flex gap-4 hover:text-red-500 mb-3 pl-2"
-            >
-              <span className="grid place-content-center text-lg">
-                <i className={`fi ${category?.icon}`}></i>
-              </span>
-              <p className="text-base capitalize text-stone-500 hover:text-black">
-                {category?.label}
-              </p>
-            </Link>
-          ))}
+          <h5 className="font-semibold capitalize text-lg mb-3">explore</h5>
+          {categoryBar.map((category) => {
+            const isActive = query.category === category.label;
+            return (
+              <Link
+                key={category?.id}
+                href={{
+                  pathname: "/explore",
+                  query: {
+                    category: category.label.toLocaleLowerCase(),
+                  },
+                }}
+                className={`${
+                  isActive
+                    ? "sidebar-link sidebar-link-active as"
+                    : "sidebar-link "
+                }`}
+              >
+                <span className="grid place-content-center text-lg">
+                  <i className={`fi ${category?.icon} leading-3`}></i>
+                </span>
+                <p className="text-base capitalize opacity-75 ">
+                  {category.label}
+                </p>
+              </Link>
+            );
+          })}
         </ul>
       </div>
     </aside>

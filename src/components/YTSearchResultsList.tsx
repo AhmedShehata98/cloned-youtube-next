@@ -26,10 +26,6 @@ function YTSearchResultsList({
   renderVideoItem,
   renderPlaylistItem,
 }: IYTSearchResultsListProps) {
-  data?.items
-    ? data?.items.forEach((item) => console.log(item.id.kind))
-    : undefined;
-
   if (isFetched && !isLoading) {
     return (
       <div className="px-3 flex flex-col mt-2">
