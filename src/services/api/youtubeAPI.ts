@@ -81,6 +81,17 @@ const getRelatedVideosOptions = (videoId: string) => ({
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });
+const playlistVideosOptions = (playlistID: string) => ({
+  method: "GET",
+  url: "https://youtube-v31.p.rapidapi.com/playlistItems",
+  params: {
+    part: "snippet",
+    maxResults: "30",
+    playlistId: playlistID,
+  },
+  "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+  "X-RapidAPI-Key": "c61be3ca42mshf758a4f25e72895p1ca436jsn841782450e33",
+});
 // deffinition of fetcher's function's "GETTING FROM API"
 const videosByCategoryFetcher = async (
   categoty: string = "New"
@@ -109,6 +120,11 @@ const getRelatedVideosFetcher = async (videoId: string) => {
   const data = await res.data;
   return data;
 };
+const getPlaylistFetcher = async (playlistID: string) => {
+  const res = await axios.request({ ...playlistVideosOptions(playlistID) });
+  const data = await res.data;
+  return data;
+};
 
 // ------------------- exports functions and properties ------------------------
 
@@ -121,4 +137,5 @@ export {
   getChannelVideosFetcher,
   getVideoDetailsFetcher,
   getRelatedVideosFetcher,
+  getPlaylistFetcher,
 };

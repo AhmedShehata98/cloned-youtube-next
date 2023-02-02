@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { categoryBar } from "@/utils/contants";
+import { useRouter } from "next/router";
 
 interface ILeftSidebarProps {
   show: boolean;
 }
 function LeftSidebar({ show }: ILeftSidebarProps) {
   const sidebarRef = useRef<HTMLElement | null>(null);
+
+  const { pathname } = useRouter();
+  const notPages = pathname.includes("/watch");
 
   useEffect(() => {
     if (show) {
@@ -20,11 +24,21 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
       window.document.body.classList.remove("prevent-scroll");
     }
   }, [show]);
+
+  useEffect(() => {
+    if (notPages && !show) {
+      sidebarRef.current?.classList.add("hidden");
+    }
+    if (notPages && show) {
+      sidebarRef.current?.classList.remove("hidden");
+    }
+  }, [show, notPages]);
+
   return (
-    <aside ref={sidebarRef} className=" sidebar-menu">
+    <aside ref={sidebarRef} className={`sidebar-menu`}>
       <div className="w-2/3 lg:w-full h-screen lg:h-auto bg-white lg:bg-transparent">
-        <ul className="h-fit flex flex-col pl-2 my-2">
-          <Link href="/" className="flex gap-4 hover:text-red-500 mb-1 ">
+        <ul className="h-fit flex flex-col pl-2 mt-2 mb-6">
+          <Link href="/" className="flex gap-4 hover:text-red-500 mb-1">
             <span className="grid place-content-center text-xl">
               <i className="fi fi-rr-home leading-3"></i>
             </span>
@@ -34,7 +48,9 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
           </Link>
         </ul>
         <ul className="h-fit flex flex-col pb-4">
-          <h5 className="font-semibold capitalize text-lg mb-3">explore </h5>
+          {!notPages && (
+            <h5 className="font-semibold capitalize text-lg mb-3">explore </h5>
+          )}
           {categoryBar.map((category) => (
             <Link
               key={category?.id}

@@ -9,7 +9,7 @@ function PlayListSearchResultCard({
   playListData,
 }: IPlayListSearchResultCardProps) {
   return (
-    <div className="relative w-full flex flex-col md:flex-row items-start justify-start gap-2  border border-gray-400 rounded overflow-hidden mt-8 mb-4">
+    <div className="yt-playlist-search">
       <Link
         href={{
           pathname: "/playlist",
@@ -17,7 +17,7 @@ function PlayListSearchResultCard({
             list: playListData.id.playlistId,
           },
         }}
-        className="relative w-full aspect-video sm:py-3 lg:py-0 md:max-w-[35%] md:min-w-[35%] h-1/2 md:h-auto overflow-hidden flex items-center justify-center bg-gray-100"
+        className="relative w-full md:w-[35%]"
       >
         <img
           src={playListData.snippet.thumbnails.medium.url}

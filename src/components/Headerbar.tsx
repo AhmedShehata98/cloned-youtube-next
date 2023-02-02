@@ -57,7 +57,7 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
         <div className="flex items-center justify-start gap-3 lg:gap-6 w-fit lg:w-1/5 pl-1 pr-3">
           <button
             type="button"
-            className="grid place-content-center lg:hidden"
+            className="grid place-content-center md:hidden"
             onClick={(ev: MouseEvent) => handlerShowSidebar(ev)}
           >
             <i className="fi fi-rr-menu-burger leading-3 text-3xl"></i>

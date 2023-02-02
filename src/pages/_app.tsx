@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import LeftSidebar from "@/components/LeftSidebar";
 import { useRouter } from "next/dist/client/router";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import AppDrawer from "@/components/AppDrawer";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -32,6 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Headerbar setShowSidebar={setShowSidebar} />
+        {/* <AppDrawer showing={showSidebar} /> */}
         <main className="min-h-screen w-full flex justify-center items-center bg-gray-50">
           <section className="yt-container flex flex-row items-start justify-start">
             <LeftSidebar show={showSidebar} />

@@ -44,7 +44,13 @@ function YTSearchResultsList({
             const kindType = item.id.kind.split("#");
             if (kindType.includes("video")) return renderVideoItem(item);
             if (kindType.includes("playlist")) return renderPlaylistItem(item);
-            if (kindType.includes("channel")) return renderChannelItem(item);
+            if (kindType.includes("channel"))
+              return (
+                <ul>
+                  <h3 className="font-medium uppercase text-lg">Channel</h3>
+                  {renderChannelItem(item)}
+                </ul>
+              );
           })}
         </ul>
       </div>

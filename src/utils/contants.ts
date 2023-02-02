@@ -76,3 +76,17 @@ export function formatElapsedTime(publishedTime: string) {
   if (minutes <= 60) return `${minutes} minutes ago`;
   if (minutes >= 60) return `${hours} hours ago`;
 }
+
+export function formatCount(status: boolean, count: string) {
+  if (!status) {
+    if (count?.length >= 2) {
+      return `${count[0]},${count[1]}${count[2]}`;
+    } else if (count?.length >= 3) {
+      return `${count[0]},${count[1]}${count[2]} K`;
+    } else if (count?.length >= 7) {
+      return `${count[0]},${count[1]}${count[2]} M`;
+    } else {
+      return `${count[0]}`;
+    }
+  }
+}

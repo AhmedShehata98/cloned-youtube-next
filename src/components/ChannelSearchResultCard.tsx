@@ -1,6 +1,9 @@
-import { Iitem } from "@/Models/Youtube";
+import { IYtChannel, Iitem } from "@/Models/Youtube";
+import { Query, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import { getChannelDetails } from "@/services/api/youtubeAPI";
+import { formatCount } from "@/utils/contants";
 interface IChannelSearchResultCardProps {
   channelResultData: Iitem;
 }
