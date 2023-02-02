@@ -1,17 +1,14 @@
 import { IThumbnailProps, IThumbnailTypes, Iitem } from "@/Models/Youtube";
 import Link from "next/link";
 import React from "react";
-
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 interface IVideoCardProps {
   videoData: Iitem;
 }
 function VideoCard({ videoData }: IVideoCardProps) {
-  const gettingVideoTime = (puplishTime: string) => {
-    const timeNow = new Date().getTime();
-    const videoTime = new Date(puplishTime).getTime();
-    const paste = timeNow - videoTime;
-    return Math.floor(new Date(paste).getDay());
-  };
+  TimeAgo.addDefaultLocale(en);
+  const timeago = new TimeAgo("en-US");
 
   return (
     <div key={videoData?.snippet.title} className="yt-card">
@@ -60,7 +57,12 @@ function VideoCard({ videoData }: IVideoCardProps) {
             </bdi>
           </Link>
           <small className="text-gray-500">
-            {videoData?.snippet?.publishTime}
+            {timeago.format(
+              new Date(
+                videoData?.snippet?.publishAt || videoData?.snippet?.publishTime
+              ).getTime(),
+              "round"
+            )}
           </small>
         </div>
       </div>

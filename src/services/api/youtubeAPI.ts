@@ -1,5 +1,6 @@
 import { IYTVideosResponse } from "@/Models/Youtube";
 import axios from "axios";
+
 const API_URL: string = "https://youtube-v31.p.rapidapi.com";
 const ENDPOINTS = {
   suggested: "/search",
@@ -93,9 +94,7 @@ const playlistVideosOptions = (playlistID: string) => ({
   "X-RapidAPI-Key": "c61be3ca42mshf758a4f25e72895p1ca436jsn841782450e33",
 });
 // deffinition of fetcher's function's "GETTING FROM API"
-const videosByCategoryFetcher = async (
-  categoty: string = "New"
-): Promise<IYTVideosResponse> => {
+const videosByCategoryFetcher = async (categoty: string = "New") => {
   const res = await axios.request(getByCategoryOptions(categoty));
   const data: IYTVideosResponse = await res.data;
   return data;

@@ -60,7 +60,7 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
       <article
         className={`w-full lg:w-[927px] mx-auto flex gap-3 justify-between flex-wrap ${
           notPages && "!w-full"
-        }`}
+        } mt-4`}
       >
         <div className="w-full lg:w-[60%]">
           <ReactPlayer
