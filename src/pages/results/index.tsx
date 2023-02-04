@@ -47,7 +47,7 @@ const SearchResults = ({ searchQueryInitialData }: ISearchResultsProps) => {
           title={`${search_query}`}
           data={searchResults}
           ErrorComponent={() => <ErrorFetchingData />}
-          LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
+          LoadingIndicator={(id) => <SkeletonVideoCard id={id} layout="row" />}
           isError={isError}
           isFetched={isFetched}
           isLoading={isLoading}

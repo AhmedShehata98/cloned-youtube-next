@@ -26,6 +26,7 @@ function YTSearchResultsList({
   renderVideoItem,
   renderPlaylistItem,
 }: IYTSearchResultsListProps) {
+  const fakeLaodingDataArr = new Array(10).fill("fake-data");
   if (isFetched && !isLoading) {
     return (
       <div className="px-3 flex flex-col mt-2">
@@ -53,8 +54,10 @@ function YTSearchResultsList({
     );
   } else {
     return (
-      <div>
-        <ul>loading ...</ul>
+      <div className="mx-2">
+        <ul className="grid grid-flow-row gap-3">
+          {fakeLaodingDataArr.map((_, idx) => LoadingIndicator(idx.toString()))}
+        </ul>
       </div>
     );
   }

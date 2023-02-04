@@ -2,6 +2,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import { IVideoDetails } from "@/Models/Youtube";
 import React, { useEffect, useState } from "react";
+import { counting } from "@/utils/contants";
 
 interface IYtDescriptionBoxProps {
   videoDetailsData: IVideoDetails;
@@ -35,10 +36,10 @@ function YtDescriptionBox({
     );
   } else {
     return (
-      <div className="shadow-md rounded-xl m-1 bg-gray-300 overflow-hidden">
+      <div className="shadow-md rounded-xl m-1 bg-gray-300 dark:bg-zinc-800 overflow-hidden">
         <span className="flex gap-3 p-2 w-full">
           <p className="font-semibold capitalize text-sm">
-            {videoDetailsData.items?.[0].statistics.viewCount + " views"}
+            {isFetched && counting("1000000000")}
           </p>
           -
           <p className="font-semibold capitalize text-sm">
@@ -51,7 +52,7 @@ function YtDescriptionBox({
           </p>
         </span>
         <span
-          className={`inline-block px-3 mb-3 overflow-hidden ${
+          className={`flex flex-col items-start justify-start px-3 mb-3 overflow-hidden ${
             showMore ? "h-auto" : "h-16"
           } `}
         >
@@ -61,7 +62,7 @@ function YtDescriptionBox({
               const theLink = text.slice(text.indexOf("http"));
 
               return isLink ? (
-                <span className="flex gap-1 justify-start items-center">
+                <span className="flex flex-col justify-start items-start">
                   <small className="opacity-90">{text}</small>
                   <a
                     className="text-sm text-sky-600"
@@ -82,14 +83,14 @@ function YtDescriptionBox({
             })}
         </span>
         <button
-          className="flex justify-center items-center gap-2 w-full bg-gray-400 p-1.5"
+          className="flex justify-center items-center gap-2 w-full bg-gray-400 dark:bg-zinc-900 p-1.5"
           onClick={() => setShowMore((show) => !show)}
         >
           <p className="text-xs font-semibold capitalize mb-0">show more</p>
           <i
             className={`fi fi-sr-${
               showMore ? "caret-up" : "caret-down"
-            } leading-3 text-sm`}
+            } leading-3 text-sm dark:text-white`}
           ></i>
         </button>
       </div>

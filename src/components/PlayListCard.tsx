@@ -10,7 +10,7 @@ function PlayListCard({ playListData }: IPlayListCardProps) {
   return (
     <div
       key={playListData.snippet.channelId}
-      className="relative yt-card shadow-sm border border-gray-300"
+      className="relative yt-card shadow-sm border border-gray-300 dark:border-gray-400"
     >
       <div
         className="relative w-full aspect-video"
@@ -36,7 +36,7 @@ function PlayListCard({ playListData }: IPlayListCardProps) {
           />
         </Link>
       </div>
-      <div className="w-full flex-1 flex flex-col p-2 bg-gray-100 border-t-4 border-red-400">
+      <div className="w-full flex-1 flex flex-col p-2 bg-gray-100 dark:bg-zinc-800 border-t-4 border-red-400">
         <Link
           href={{
             pathname: "/playlist",

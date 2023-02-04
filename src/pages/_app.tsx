@@ -28,12 +28,22 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, [isReady, events]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.localStorage.getItem("currentTheme") === "DARK") {
+        window.document.documentElement.classList.replace("dark", "light");
+      } else {
+        window.document.documentElement.classList.replace("light", "dark");
+      }
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Headerbar setShowSidebar={setShowSidebar} />
         {/* <AppDrawer showing={showSidebar} /> */}
-        <main className="min-h-screen w-full flex justify-center items-center bg-gray-50">
+        <main className="min-h-screen w-full flex justify-center items-center bg-gray-50 dark:bg-zinc-700">
           <section className="yt-container flex flex-row items-start justify-start">
             {!pathname.includes("/watch") && <LeftSidebar show={showSidebar} />}
             <Component {...pageProps} />

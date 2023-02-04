@@ -220,3 +220,10 @@ export interface IYTVideosResponse {
     resultsPerPage: number;
   };
 }
+
+export interface IRecentVideos {
+  recentVideosList: {
+    videoDetailsData: IVideoDetails;
+    relatedVideosData: IYtSuggestVideos;
+  }[];
+}

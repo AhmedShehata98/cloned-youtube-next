@@ -77,16 +77,19 @@ export function formatElapsedTime(publishedTime: string) {
   if (minutes >= 60) return `${hours} hours ago`;
 }
 
-export function formatCount(status: boolean, count: string) {
-  if (!status) {
-    if (count?.length >= 2) {
-      return `${count[0]},${count[1]}${count[2]}`;
-    } else if (count?.length >= 3) {
-      return `${count[0]},${count[1]}${count[2]} K`;
-    } else if (count?.length >= 7) {
-      return `${count[0]},${count[1]}${count[2]} M`;
-    } else {
-      return `${count[0]}`;
-    }
+export function counting(count: string) {
+  const countNumber: number = Number(count);
+  if (countNumber <= 99) {
+    return `${count} view`;
+  } else if (countNumber > 1000) {
+    return `${count[0]},${count[1]}${count[2]} K view`;
+  } else if (countNumber > 10_000) {
+    return `${count[0]}${count[1]},${count[2]}${count[3]} K view`;
+  } else if (countNumber > 100_000) {
+    return `${count[0]}${count[1]}${count[2]},${count[3]}${count[4]} K view`;
+  } else if (countNumber > 1_000_000) {
+    return `${count[0]},${count[1]}${count[2]} M view`;
+  } else {
+    return `${count} view`;
   }
 }

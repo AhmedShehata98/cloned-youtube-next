@@ -13,7 +13,10 @@ function SearchResultVideoCard({
   },
 }: ISearchResultVideoCardProps) {
   return (
-    <div className="flex flex-col md:flex-row gap-2 bg-zinc-100 border border-gray-400 rounded overflow-hidden">
+    <div
+      key={videoId}
+      className="flex flex-col md:flex-row gap-2 bg-zinc-100 dark:bg-zinc-800 border border-gray-400 dark:border-gray-500 rounded overflow-hidden"
+    >
       <Link
         href={{
           pathname: "/watch",
@@ -33,7 +36,7 @@ function SearchResultVideoCard({
             pathname: "/watch",
             query: { vidId: videoId },
           }}
-          className="leading-5 h-10 overflow-hidden font-medium text-lg mb-1"
+          className="leading-5 h-10 overflow-hidden font-medium text-lg dark:text-white mb-1"
         >
           {snippet.title}
         </Link>
@@ -49,7 +52,7 @@ function SearchResultVideoCard({
                 channelId: snippet.channelId,
               },
             }}
-            className="uppercase font-semibold opacity-80 text-sm"
+            className="uppercase font-semibold opacity-80 dark:text-white text-sm"
             title={`Go to ${snippet.channelTitle} channel`}
           >
             {snippet.channelTitle}

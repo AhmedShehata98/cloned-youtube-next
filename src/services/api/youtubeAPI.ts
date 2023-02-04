@@ -36,6 +36,7 @@ const channelEndpointOptions = (channelId: string) => ({
   params: {
     part: "id,snippet",
     id: channelId,
+    regionCode: "EG",
   },
   headers: {
     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
@@ -49,6 +50,7 @@ const getChannelVideosOptions = (channelID: string) => ({
     channelId: channelID,
     part: "snippet,id",
     order: "date",
+    regionCode: "EG",
     maxResults: "25",
   },
   headers: {
@@ -61,6 +63,7 @@ const getVideoDetailsOptions = (videoId: string) => ({
   url: `https://youtube-v31.p.rapidapi.com${ENDPOINTS.videosDetails}`,
   params: {
     part: "contentDetails,snippet,statistics",
+    regionCode: "EG",
     id: videoId,
   },
   headers: {
@@ -88,6 +91,7 @@ const playlistVideosOptions = (playlistID: string) => ({
   params: {
     part: "snippet",
     maxResults: "30",
+    regionCode: "EG",
     playlistId: playlistID,
   },
   "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",

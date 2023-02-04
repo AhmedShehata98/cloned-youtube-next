@@ -9,7 +9,10 @@ function PlayListSearchResultCard({
   playListData,
 }: IPlayListSearchResultCardProps) {
   return (
-    <div className="yt-playlist-search">
+    <div
+      key={playListData.id.playlistId || playListData.id.videoId}
+      className="yt-playlist-search"
+    >
       <Link
         href={{
           pathname: "/playlist",

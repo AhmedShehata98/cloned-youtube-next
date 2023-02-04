@@ -15,6 +15,7 @@ interface IHeaderbarProps {
 }
 function Headerbar({ setShowSidebar }: IHeaderbarProps) {
   const [query, setQuery] = useState<string>();
+  const [currentTheme, setCurrentTheme] = useState<"DARK" | "LIGHT">("LIGHT");
   const [showInputSearch, setshowInputSearch] = useState<boolean>(false);
   const [innerWidth, setInnerWidth] = useState<number>(
     typeof window !== "undefined" ? window.innerWidth : 1024
@@ -51,6 +52,18 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
     }
   }, [innerWidth]);
 
+  const handleSwitchMode = () => {
+    setCurrentTheme((prev) => (prev === "LIGHT" ? "DARK" : "LIGHT"));
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("currentTheme", currentTheme);
+      if (currentTheme === "DARK") {
+        window.document.documentElement.classList.replace("dark", "light");
+      } else {
+        window.document.documentElement.classList.replace("light", "dark");
+      }
+    }
+  };
+
   return (
     <header className="yt-header">
       <section className="yt-container flex justify-start items-center">
@@ -60,14 +73,14 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
             className="grid place-content-center md:hidden"
             onClick={(ev: MouseEvent) => handlerShowSidebar(ev)}
           >
-            <i className="fi fi-rr-menu-burger leading-3 text-3xl"></i>
+            <i className="fi fi-rr-menu-burger leading-3 text-3xl dark:text-white"></i>
           </button>
           {!showInputSearch && <Logo />}
         </div>
         <form
           className={`flex-1 hidden lg:flex-none lg:w-2/5 lg:flex items-center justify-start rounded-full mx-2 overflow-hidden ${
             showInputSearch && "!flex"
-          } bg-zinc-200`}
+          } bg-zinc-200 dark:bg-zinc-600`}
           onSubmit={(ev: FormEvent<HTMLFormElement>) => {
             ev.preventDefault();
             handleSearch();
@@ -80,12 +93,12 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
             <button
               type="button"
               onClick={() => handleSearch()}
-              className="text-lg text-gray-500 flex justify-center items-center hover:bg-stone-300 hover:text-black py-2 pl-5 pr-4"
+              className="text-lg text-gray-500 dark:text-zinc-200 flex justify-center items-center hover:bg-stone-300 dark:hover:bg-zinc-300 hover:text-black py-2 pl-5 pr-4"
             >
               <i className="fi fi-rr-search leading-3"></i>
             </button>
             <input
-              className="flex-1 bg-zinc-200 py-1 px-3 focus:outline-none"
+              className="flex-1 bg-zinc-200 dark:bg-zinc-600 dark:placeholder:text-zinc-300 py-1 px-3 focus:outline-none"
               type="search"
               name="search-yt-videos"
               id="search-yt-videos"
@@ -99,7 +112,7 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
         </form>
         <div className="w-fit overflow-hidden flex justify-center items-center gap-2 ml-auto">
           <button
-            className="w-8 grid lg:hidden place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 rounded-full hover:bg-gray-300 ml-2"
+            className="w-8 grid lg:hidden place-content-center aspect-square shadow bg-zinc-200 dark:bg-zinc-600 border border-slate-200 dark:border-gray-400 rounded-full dark:text-white hover:bg-gray-300 ml-2"
             onClick={handleShowSearchInput}
           >
             {showInputSearch ? (
@@ -108,19 +121,27 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
               <i className="fi fi-rr-search leading-3 select-none pointer-events-none "></i>
             )}
           </button>
-          <button className="hidden w-8 md:grid place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 rounded-full hover:bg-gray-300">
+          <button className="hidden w-8 md:grid place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 dark:border-gray-400 dark:text-white dark:bg-zinc-600 dark:hover:bg-zinc-700 rounded-full hover:bg-gray-300">
             <i className="fi fi-sr-bell leading-3 select-none pointer-events-none"></i>
           </button>
-          <button className="hidden w-8 md:grid place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 rounded-full hover:bg-gray-300">
+          <button className="hidden w-8 md:grid place-content-center aspect-square shadow border-slate-200 dark:border-gray-400 dark:text-white dark:bg-zinc-600 dark:hover:bg-zinc-700 rounded-full hover:bg-gray-300">
             <i className="fi fi-sr-comment leading-3 select-none pointer-events-none"></i>
           </button>
           <button
-            className={`w-fit h-8 flex items-center justify-center gap-2 lg:ml-4 lg:px-3 rounded-full text-slate-900 border border-slate-200 bg-gray-200 ${
-              showInputSearch && "hidden"
-            }`}
+            className={`w-fit h-8 flex items-center justify-center gap-2 lg:ml-4 lg:px-3 rounded-full dark:border-gray-400 ${
+              currentTheme === "DARK"
+                ? "bg-yellow-400 tex-black"
+                : "bg-violet-700 text-white"
+            } ${showInputSearch && "hidden"}`}
+            onClick={() => handleSwitchMode()}
           >
-            <span className="w-8 h-full text-lg grid place-content-center">
-              <i className="fi fi-sr-fill leading-3 select-none pointer-events-none"></i>
+            <span className="w-8 h-full text-lg grid place-content-center select-none pointer-events-none">
+              {currentTheme === "DARK" && (
+                <i className="fi fi-sr-brightness leading-3 select-none pointer-events-none"></i>
+              )}
+              {currentTheme === "LIGHT" && (
+                <i className="fi fi-sr-moon-stars leading-3 select-none pointer-events-none"></i>
+              )}
             </span>
           </button>
         </div>

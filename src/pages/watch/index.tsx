@@ -14,6 +14,7 @@ import ReactPlayer from "react-player";
 import Head from "next/head";
 import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 import YtDescriptionBox from "@/components/YtDescriptionBox";
+import VideoReaction from "@/components/VideoReaction";
 
 const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
   const {
@@ -27,7 +28,6 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
       data,
       isFetched: isFetchedVideoDetails,
       isLoading: isLoadingVideoDetails,
-      isError,
     },
     {
       data: relatedVideos,
@@ -73,37 +73,23 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
             <h3 className="font-semibold text-lg capitalize">
               {videoDetailsData?.items?.[0].snippet.title}
             </h3>
-            <div className="w-full flex justify-between items-center gap-3">
+            <div className="w-full flex justify-between items-center gap-3 flex-wrap">
               {/* channel info box */}
               <div className="flex gap-2">
-                <figure className="w-11 h-11 grid place-content-center bg-red-400 rounded-full">
+                <figure className="w-8 md:w-11 h-8 md:h-11 grid place-content-center bg-red-400 rounded-full">
                   <i className="fi fi-sr-screen leading-3 text-xl"></i>
                 </figure>
                 <div>
                   <b className="opacity-70 leading-5 h-8 overflow-hidden">
                     {videoDetailsData?.items?.[0].snippet.channelTitle}
                   </b>
-                  <span className="flex justify-start items-center gap-2">
-                    <b>0000</b>
-                    <small>subscribers</small>
-                  </span>
                 </div>
               </div>
-              <div className="flex-1 flex justify-end gap-3">
-                <span className="w-36 flex justify-between items-center rounded-full overflow-hidden shadow-md divide-x divide-gray-500 bg-gray-300 capitalize text-black font-semibold">
-                  <button className="flex-1 flex justify-center items-center px-2 py-1 gap-2 hover:bg-gray-100">
-                    <i className="inline-block rotate-180 leading-3 fi fi-rr-hand"></i>
-                    <p>{videoDetailsData?.items?.[0].statistics.likeCount}</p>
-                  </button>
-                  <button className="flex items-center justify-center px-4 py-2 rounded-tr-full rounded-br-full hover:bg-gray-100">
-                    <i className="fi fi-rr-hand leading-3"></i>
-                  </button>
-                </span>
-                <button className="flex justify-center items-center rounded-full shadow-md bg-gray-300 px-4 py-1 gap-2 hover:bg-gray-100 capitalize text-black font-semibold">
-                  <i className="fi fi-rr-download leading-3"></i>
-                  <small>download</small>
-                </button>
-              </div>
+              <VideoReaction
+                videoDetailsData={videoDetailsData}
+                isFetched={isFetchedVideoDetails}
+                isLoading={isLoadingVideoDetails}
+              />
             </div>
           </div>
           {/* discription box */}

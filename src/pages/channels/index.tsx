@@ -58,12 +58,12 @@ const ChannelDetails = ({
 
       <div style={{ width: "calc(100% - 11.4rem)" }}>
         <figure
-          className="w-full h-52 overflow-hidden bg-no-repeat bg-cover bg-center aspect-video border border-b-0 border-slate-400"
+          className="w-full h-52 overflow-hidden bg-no-repeat bg-cover bg-center aspect-video border-t border-slate-400"
           style={{
             backgroundImage: `url(${channelDetailsData?.items[0].brandingSettings?.image?.bannerExternalUrl})`,
           }}
         ></figure>
-        <div className="py-2 px-3 bg-gray-300 border border-t-0 border-slate-400">
+        <div className="py-2 px-3 bg-gray-300 dark:bg-zinc-800">
           <span className="flex gap-2">
             <figure className="w-20 aspect-square rounded-full overflow-hidden">
               <img

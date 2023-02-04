@@ -3,6 +3,18 @@
   body {
     @apply bg-zinc-100;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  small,
+  b,
+  bdi {
+    @apply dark:text-white;
+  }
 }
 @tailwind components;
 @layer components {
@@ -19,10 +31,10 @@
     @apply max-h-screen fixed inset-0;
   }
   .yt-header {
-    @apply sticky top-0 z-40 w-full h-14 flex justify-between items-center bg-white shadow-sm border-b px-2 lg:px-0;
+    @apply sticky top-0 z-40 w-full h-14 flex justify-between items-center bg-white dark:bg-zinc-900 shadow-sm border-b dark:border-gray-500 px-2 lg:px-0;
   }
   .sidebar-menu {
-    @apply absolute top-14 left-0 lg:sticky lg:top-16 z-20 w-full lg:w-56 h-screen max-h-screen -translate-x-[150%] lg:translate-x-0 opacity-25 scale-95 lg:scale-100 lg:opacity-100 duration-300 flex flex-col items-start justify-start border-r lg:py-3 bg-gray-900 bg-opacity-50 lg:bg-opacity-100 lg:bg-transparent;
+    @apply absolute top-14 left-0 lg:sticky lg:top-16 z-20 w-full lg:w-56 h-screen max-h-screen -translate-x-[150%] lg:translate-x-0 opacity-25 scale-95 lg:scale-100 lg:opacity-100 duration-300 flex flex-col items-start justify-start border-r dark:border-gray-500 lg:py-3 bg-gray-900 bg-opacity-50 lg:bg-opacity-100 lg:bg-transparent;
   }
   .hide-loading-screen {
     @apply opacity-0 pointer-events-none translate-x-1;
@@ -31,7 +43,7 @@
     @apply relative w-full flex flex-col md:flex-row items-start justify-start gap-2  border border-gray-400 rounded overflow-hidden;
   }
   .sidebar-link {
-    @apply flex gap-4 hover:text-red-500 mb-2 transition-all pl-2 mr-2 py-1.5 rounded-full;
+    @apply flex gap-4 hover:text-red-500 dark:hover:text-red-400 mb-2 transition-all pl-2 mr-2 py-1.5 rounded-full;
   }
   .sidebar-link-active {
     @apply bg-red-500 !text-white opacity-100 px-4 font-semibold;
