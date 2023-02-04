@@ -38,7 +38,7 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
             </span>
             <p className="text-base capitalize text-stone-500">home</p>
           </Link>
-          <Link
+          {/* <Link
             href={{
               pathname: "/recent",
             }}
@@ -48,7 +48,7 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
               <i className="fi fi-rr-time-forward leading-3"></i>
             </span>
             <p className="text-base capitalize text-stone-500">recent videos</p>
-          </Link>
+          </Link> */}
         </ul>
         <ul className="h-fit flex flex-col pb-4 ml-3 md:ml-0">
           <h5 className="font-semibold capitalize text-lg mb-3 ">explore</h5>
