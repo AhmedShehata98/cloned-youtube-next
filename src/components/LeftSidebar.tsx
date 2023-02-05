@@ -14,11 +14,17 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
 
   useEffect(() => {
     if (show) {
-      sidebarRef.current?.classList.add("show-category-list");
+      sidebarRef.current?.classList.add("show-sidebar");
+      sidebarRef.current?.firstElementChild?.classList.add(
+        "show-category-list"
+      );
     } else {
-      sidebarRef.current?.classList.remove("show-category-list");
+      sidebarRef.current?.classList.remove("show-sidebar");
+      sidebarRef.current?.firstElementChild?.classList.remove(
+        "show-category-list"
+      );
     }
-    if (sidebarRef.current?.classList.contains("show-category-list")) {
+    if (sidebarRef.current?.classList.contains("show-sidebar")) {
       window.document.body.classList.add("prevent-scroll");
     } else {
       window.document.body.classList.remove("prevent-scroll");
@@ -27,13 +33,13 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
 
   return (
     <aside ref={sidebarRef} className={`sidebar-menu`}>
-      <div className="w-2/3 lg:w-full h-screen lg:h-auto bg-white dark:bg-zinc-700 lg:bg-transparent">
+      <div className="w-2/3 lg:w-full h-screen lg:h-auto -translate-x-36 lg:translate-x-0 opacity-0 lg:opacity-100 transition-all bg-white dark:bg-zinc-700 lg:bg-transparent">
         <ul className="h-fit flex flex-col gap-2 pl-2 mt-2 mb-6 ml-3 md:ml-0">
           <Link
             href="/"
             className="flex gap-4 hover:text-red-500 dark:hover:text-red-400 mb-1"
           >
-            <span className="grid place-content-center text-xl text-white">
+            <span className="grid place-content-center text-xl dark:text-white">
               <i className="fi fi-rr-home leading-3"></i>
             </span>
             <p className="text-base capitalize text-stone-500">home</p>
@@ -52,11 +58,11 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
         </ul>
         <ul className="h-fit flex flex-col pb-4 ml-3 md:ml-0">
           <h5 className="font-semibold capitalize text-lg mb-3 ">explore</h5>
-          {categoryBar.map((category) => {
+          {categoryBar.map((category, idx) => {
             const isActive = query.category === category.label;
             return (
               <Link
-                key={category?.id}
+                key={idx}
                 href={{
                   pathname: "/explore",
                   query: {
@@ -69,7 +75,7 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
                     : "sidebar-link "
                 }`}
               >
-                <span className="grid place-content-center text-lg text-white">
+                <span className="grid place-content-center text-lg dark:text-white">
                   <i className={`fi ${category?.icon} leading-3`}></i>
                 </span>
                 <p className="text-base capitalize opacity-75 ">

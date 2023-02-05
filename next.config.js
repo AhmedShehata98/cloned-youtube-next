@@ -8,7 +8,7 @@ const nextConfig = {
     NEXT_PUBLIC_RAPID_API_KEY: process.env.NEXT_PUBLIC_RAPID_API_KEY,
   },
   compiler: {
-    removeConsole: true,
+    removeConsole: false,
   },
 };
 

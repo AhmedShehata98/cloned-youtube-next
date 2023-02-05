@@ -8,6 +8,16 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import {
+  IoMenu,
+  IoCloseSharp,
+  IoSearchSharp,
+  IoMoonSharp,
+  IoSunnySharp,
+  IoNotificationsSharp,
+  IoArrowForwardSharp,
+} from "react-icons/io5";
+import { MdOutlineComment } from "react-icons/md";
 import Logo from "./Logo";
 
 interface IHeaderbarProps {
@@ -33,17 +43,37 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
     }
   }
   function handlerShowSidebar(_ev: MouseEvent) {
+    const target = _ev.target as HTMLElement;
     _ev.preventDefault();
     setShowSidebar((curr) => !curr);
+    const icons = target.children as HTMLCollection;
+
+    Array.from(icons).forEach((icon) =>
+      icon.classList.contains("hidden")
+        ? icon.classList.remove("hidden")
+        : icon.classList.add("hidden")
+    );
   }
+
+  const handleClosesidebar = (ev: globalThis.MouseEvent) => {
+    const target = ev.target as HTMLElement;
+    if (target.id !== "sidemenuBtn") setShowSidebar(false);
+  };
+
   function handleShowSearchInput() {
     setshowInputSearch((current) => !current);
   }
 
+  const handleReSize = () => {
+    setInnerWidth(window.innerWidth);
+  };
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setInnerWidth(window.innerWidth);
+      handleReSize();
     });
+    return () => {
+      removeEventListener("resize", handleReSize);
+    };
   }, []);
 
   useEffect(() => {
@@ -51,6 +81,15 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
       setshowInputSearch(false);
     }
   }, [innerWidth]);
+
+  useEffect(() => {
+    window.document.onclick = (ev: globalThis.MouseEvent) => {
+      handleClosesidebar(ev);
+    };
+    return () => {
+      removeEventListener("click", handleClosesidebar);
+    };
+  }, []);
 
   const handleSwitchMode = () => {
     setCurrentTheme((prev) => (prev === "LIGHT" ? "DARK" : "LIGHT"));
@@ -70,10 +109,12 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
         <div className="flex items-center justify-start gap-3 lg:gap-6 w-fit lg:w-1/5 pl-1 pr-3">
           <button
             type="button"
-            className="grid place-content-center md:hidden"
+            className="sidemenu-btn"
+            id="sidemenuBtn"
             onClick={(ev: MouseEvent) => handlerShowSidebar(ev)}
           >
-            <i className="fi fi-rr-menu-burger leading-3 text-3xl dark:text-white"></i>
+            <IoMenu className="text-3xl dark:text-white pointer-events-none" />
+            <IoCloseSharp className="hidden text-3xl dark:text-white pointer-events-none" />
           </button>
           {!showInputSearch && <Logo />}
         </div>
@@ -95,7 +136,7 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
               onClick={() => handleSearch()}
               className="text-lg text-gray-500 dark:text-zinc-200 flex justify-center items-center hover:bg-stone-300 dark:hover:bg-zinc-300 hover:text-black py-2 pl-5 pr-4"
             >
-              <i className="fi fi-rr-search leading-3"></i>
+              <IoSearchSharp className="fi fi-rr-search leading-3" />
             </button>
             <input
               className="flex-1 bg-zinc-200 dark:bg-zinc-600 dark:placeholder:text-zinc-300 py-1 px-3 focus:outline-none"
@@ -116,16 +157,16 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
             onClick={handleShowSearchInput}
           >
             {showInputSearch ? (
-              <i className="fi fi-rr-arrow-small-left leading-3 select-none pointer-events-none text-2xl"></i>
+              <IoArrowForwardSharp className="fi fi-rr-arrow-small-left leading-3 select-none pointer-events-none text-2xl" />
             ) : (
-              <i className="fi fi-rr-search leading-3 select-none pointer-events-none "></i>
+              <IoSearchSharp className="fi fi-rr-search leading-3 text-2xl select-none pointer-events-none " />
             )}
           </button>
           <button className="hidden w-8 md:grid place-content-center aspect-square shadow bg-zinc-200 border border-slate-200 dark:border-gray-400 dark:text-white dark:bg-zinc-600 dark:hover:bg-zinc-700 rounded-full hover:bg-gray-300">
-            <i className="fi fi-sr-bell leading-3 select-none pointer-events-none"></i>
+            <IoNotificationsSharp className="fi fi-sr-bell leading-3 select-none pointer-events-none" />
           </button>
-          <button className="hidden w-8 md:grid place-content-center aspect-square shadow border-slate-200 dark:border-gray-400 dark:text-white dark:bg-zinc-600 dark:hover:bg-zinc-700 rounded-full hover:bg-gray-300">
-            <i className="fi fi-sr-comment leading-3 select-none pointer-events-none"></i>
+          <button className="hidden w-8 md:grid place-content-center aspect-square shadow border-slate-200 dark:border-gray-400 dark:text-white bg-gray-200 dark:bg-zinc-600 dark:hover:bg-zinc-700 rounded-full hover:bg-gray-300">
+            <MdOutlineComment className="fi fi-sr-comment leading-3 select-none pointer-events-none" />
           </button>
           <button
             className={`w-fit h-8 flex items-center justify-center gap-2 lg:ml-4 lg:px-3 rounded-full dark:border-gray-400 ${
@@ -137,10 +178,10 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
           >
             <span className="w-8 h-full text-lg grid place-content-center select-none pointer-events-none">
               {currentTheme === "DARK" && (
-                <i className="fi fi-sr-brightness leading-3 select-none pointer-events-none"></i>
+                <IoSunnySharp className="fi fi-sr-brightness leading-3 select-none pointer-events-none" />
               )}
               {currentTheme === "LIGHT" && (
-                <i className="fi fi-sr-moon-stars leading-3 select-none pointer-events-none"></i>
+                <IoMoonSharp className="fi fi-sr-moon-stars leading-3 select-none pointer-events-none" />
               )}
             </span>
           </button>
