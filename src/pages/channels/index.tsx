@@ -56,29 +56,29 @@ const ChannelDetails = ({
         </title>
       </Head>
 
-      <div style={{ width: "calc(100% - 11.4rem)" }}>
+      <div className="w-full lg:w-[927px] mx-auto">
         <figure
-          className="w-full h-52 overflow-hidden bg-no-repeat bg-cover bg-center aspect-video border-t border-slate-400"
+          className="w-full h-52 overflow-hidden bg-no-repeat bg-cover bg-center aspect-video lg:border-t border-slate-400"
           style={{
             backgroundImage: `url(${channelDetailsData?.items[0].brandingSettings?.image?.bannerExternalUrl})`,
           }}
         ></figure>
-        <div className="py-2 px-3 bg-gray-300 dark:bg-zinc-800">
+        <div className="sticky top-14 z-30 py-2 px-3 bg-gray-300 dark:bg-zinc-800">
           <span className="flex gap-2">
-            <figure className="w-20 aspect-square rounded-full overflow-hidden">
+            <figure className="w-16 my-1 lg:m-0 lg:w-20 aspect-square rounded-full overflow-hidden">
               <img
                 src={
                   channelDetailsData?.items[0].snippet.thumbnails.default.url
                 }
                 alt="channel-avatar"
-                className="max-w-full aspect-square object-cover"
+                className="max-w-full object-cover"
               />
             </figure>
             <span>
-              <b className="mb-2 inline-block">
+              <b className="mb-2 inline-block text-sm md:text-base">
                 {channelDetailsData?.items[0].snippet.title}
               </b>
-              <p className="mb-0 opacity-70 font-medium capitalize leading-3">
+              <p className="mb-0 opacity-70  capitalize leading-3 text-sm md:text-base">
                 {channelDetailsData?.items[0].snippet.customUrl}
               </p>
               <small>
