@@ -58,12 +58,12 @@ const ChannelDetails = ({
 
       <div className="w-full lg:w-[927px] mx-auto">
         <figure
-          className="w-full h-52 overflow-hidden bg-no-repeat bg-cover bg-center aspect-video lg:border-t border-slate-400"
+          className="channel-cover"
           style={{
             backgroundImage: `url(${channelDetailsData?.items[0].brandingSettings?.image?.bannerExternalUrl})`,
           }}
         ></figure>
-        <div className="sticky top-14 z-30 py-2 px-3 bg-gray-300 dark:bg-zinc-800">
+        <div className="channel-details">
           <span className="flex gap-2">
             <figure className="w-16 my-1 lg:m-0 lg:w-20 aspect-square rounded-full overflow-hidden">
               <img

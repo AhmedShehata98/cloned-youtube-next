@@ -54,5 +54,11 @@
   .sidemenu-btn {
     @apply grid place-content-center md:hidden;
   }
+  .channel-cover {
+    @apply w-full h-52 overflow-hidden bg-no-repeat bg-cover bg-center aspect-video lg:border-t border-slate-400;
+  }
+  .channel-details {
+    @apply sticky top-14 z-30 py-2 px-3 bg-gray-300 dark:bg-zinc-800;
+  }
 }
 @tailwind utilities;
