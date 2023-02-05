@@ -1,5 +1,3 @@
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 import { IVideoDetails } from "@/Models/Youtube";
 import React, { useEffect, useState } from "react";
 import { counting } from "@/utils/contants";
@@ -17,9 +15,6 @@ function YtDescriptionBox({
   const [showMore, setShowMore] = useState<boolean>(false);
   const filteredYtDescriptionsArr =
     videoDetailsData?.items?.[0].snippet.localized.description.split("\n");
-
-  TimeAgo.addDefaultLocale(en);
-  const timeago = new TimeAgo("en-US");
 
   useEffect(() => {
     if (!showMore) {
@@ -44,10 +39,12 @@ function YtDescriptionBox({
           -
           <p className="font-semibold capitalize text-sm">
             {isFetched &&
-              timeago.format(
-                new Date(
-                  videoDetailsData.items?.[0].snippet.publishedAt
-                ).getTime()
+              Intl.DateTimeFormat("en-US", {
+                dateStyle: "medium",
+                formatMatcher: "best fit",
+                timeStyle: "medium",
+              }).format(
+                new Date(videoDetailsData.items?.[0].snippet.publishedAt)
               )}
           </p>
         </span>
