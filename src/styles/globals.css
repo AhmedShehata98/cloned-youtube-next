@@ -46,10 +46,10 @@
     @apply relative w-full flex flex-col md:flex-row items-start justify-start gap-2  border border-gray-400 rounded overflow-hidden;
   }
   .sidebar-link {
-    @apply flex gap-4 hover:text-red-500 dark:hover:text-red-400 mb-2 transition-all pl-2 mr-2 py-1.5 rounded-full;
+    @apply md:w-[90%] flex gap-4 hover:text-red-500 dark:hover:text-red-400 mb-2 py-1 px-3 transition-all rounded-full;
   }
   .sidebar-link-active {
-    @apply bg-red-500 !text-white opacity-100 px-4 font-semibold;
+    @apply bg-red-500 !text-white opacity-100 translate-x-3 font-semibold;
   }
   .sidemenu-btn {
     @apply grid place-content-center md:hidden;
