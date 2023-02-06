@@ -57,25 +57,21 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
           {videoDetailsData?.items?.[0].snippet.title} - cloned YouTube
         </title>
       </Head>
-      <article
-        className={`w-full lg:w-[927px] mx-auto flex gap-3 justify-between flex-wrap ${
-          notPages && "!w-full"
-        } mt-4`}
-      >
+      <article className={`watch-video-page ${notPages && "!w-full"} mt-4`}>
         <div className="w-full lg:w-[60%]">
           <ReactPlayer
             width={"100%"}
             controls
             url={`https://www.youtube.com/watch?v=${videoDetailsData?.items?.[0].id}`}
           />
-          {/* video content box */}
-          <div className="w-full h-fit py-2 flex flex-col gap-2 p-2 mb-3">
+          {/* video content wrapper */}
+          <div className="video-content-wrapper">
             <h3 className="font-semibold text-lg capitalize">
               {videoDetailsData?.items?.[0].snippet.title}
             </h3>
             <div className="w-full flex justify-between items-center gap-3 flex-wrap">
               {/* channel info box */}
-              <div className="flex gap-2">
+              <div className="channel-info-box">
                 <figure className="w-8 md:w-11 h-8 md:h-11 grid place-content-center bg-red-400 rounded-full">
                   <i className="fi fi-sr-screen leading-3 text-xl"></i>
                 </figure>

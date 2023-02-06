@@ -4,62 +4,73 @@ export const categoryBar = [
   {
     id: nanoid(3),
     icon: "fi-rr-desktop-wallpaper",
-    label: "elzero-web-school",
+    label: "elzero web school",
+    link: "/elzero-web-school",
   },
   {
     id: nanoid(3),
     icon: "fi-rr-book-open-cover",
     label: "Quran",
+    link: "quran",
   },
 
   {
     id: nanoid(3),
     icon: "fi-sr-globe",
     label: "sports",
+    link: "sports",
   },
 
   {
     id: nanoid(3),
     icon: "fi-rr-music",
     label: "music",
+    link: "music",
   },
 
   {
     id: nanoid(3),
     icon: "fi-rr-football",
     label: "football",
+    link: "football",
   },
 
   {
     id: nanoid(3),
     icon: "fi-rr-confetti",
     label: "new",
+    link: "new",
   },
 
   {
     id: nanoid(3),
     icon: "fi-rr-film",
     label: "movies",
+    link: "movies",
   },
   {
     id: nanoid(3),
     icon: "fi-rr-bowling",
     label: "gaming",
+    link: "gaming",
   },
   {
     id: nanoid(3),
     icon: "fi-rr-microphone",
     label: "podcast",
+    link: "podcast",
   },
   {
     id: nanoid(3),
     icon: "fi-rr-graduation-cap",
     label: "education",
+    link: "education",
   },
   {
     id: nanoid(3),
     icon: "fi-rr-gem",
     label: "Popular",
+    link: "popular",
   },
 ];
 

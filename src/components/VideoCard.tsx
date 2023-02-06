@@ -24,7 +24,7 @@ function VideoCard({ videoData }: IVideoCardProps) {
           className="w-full aspect-video object-cover object-center rounded-sm "
         />
       </Link>
-      <div className="flex justify-start items-start rounded-sm px-1 pt-3 pb-1 bg-gray-100 dark:bg-zinc-800 gap-1">
+      <div className="yt-videocard-details">
         <span className="w-[18%] aspect-square bg-red-300 rounded-full flex justify-center items-center">
           <i className="fi fi-rr-desktop-wallpaper leading-3 text-slate-900"></i>
         </span>

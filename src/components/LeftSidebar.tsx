@@ -33,7 +33,7 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
 
   return (
     <aside ref={sidebarRef} className={`sidebar-menu`}>
-      <div className="w-2/3 lg:w-full h-screen lg:h-auto -translate-x-36 lg:translate-x-0 opacity-0 lg:opacity-100 transition-all bg-white dark:bg-zinc-700 lg:bg-transparent">
+      <div className="side-category-bar">
         <ul className="h-fit flex flex-col gap-2 pl-2 mt-2 mb-6 ml-3 md:ml-0">
           <Link
             href="/"
@@ -59,14 +59,15 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
         <ul className="h-fit flex flex-col pb-4 ml-3 md:ml-0">
           <h5 className="font-semibold capitalize text-lg mb-3 ">explore</h5>
           {categoryBar.map((category, idx) => {
-            const isActive = query.category === category.label;
+            const isActive = query.category === category.link;
+
             return (
               <Link
                 key={idx}
                 href={{
                   pathname: "/explore",
                   query: {
-                    category: category.label.toLocaleLowerCase(),
+                    category: category.link,
                   },
                 }}
                 className={`${
