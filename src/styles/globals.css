@@ -69,8 +69,8 @@
   .showmore-description-btn {
     @apply flex justify-center items-center gap-2 w-full bg-gray-400 dark:bg-zinc-900 p-1.5;
   }
-  .ty-videocard-details {
-    @apply flex justify-start items-start rounded-sm px-1 pt-3 pb-1 bg-gray-100 dark:bg-zinc-800 gap-1;
+  .yt-videocard-details {
+    @apply flex justify-start items-start rounded-sm px-1 pt-3 pb-1 bg-zinc-200 dark:bg-zinc-800 gap-1;
   }
   .watch-video-page {
     @apply w-full lg:w-[927px] mx-auto flex gap-3 justify-between flex-wrap;

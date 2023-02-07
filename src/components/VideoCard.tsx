@@ -1,6 +1,7 @@
 import { IThumbnailProps, IThumbnailTypes, Iitem } from "@/Models/Youtube";
 import Link from "next/link";
 import React from "react";
+import { handleAddToRecents } from "@/utils/contants";
 
 interface IVideoCardProps {
   videoData: Iitem;
@@ -17,6 +18,9 @@ function VideoCard({ videoData }: IVideoCardProps) {
         }}
         title={`Go to video ${videoData.snippet.title}`}
         className="w-full h-fit aspect-video flex items-center justify-center rounded-sm"
+        onClick={() => {
+          handleAddToRecents(videoData);
+        }}
       >
         <img
           src={videoData?.snippet?.thumbnails.medium.url}

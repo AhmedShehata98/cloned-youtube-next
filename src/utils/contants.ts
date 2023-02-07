@@ -1,3 +1,4 @@
+import { Iitem } from "@/Models/Youtube";
 import { nanoid } from "nanoid";
 
 export const categoryBar = [
@@ -74,6 +75,8 @@ export const categoryBar = [
   },
 ];
 
+export const recentvideos: Iitem[] = [];
+
 export function formatElapsedTime(publishedTime: string) {
   const TimeNow = new Date().getTime();
   const published = new Date(publishedTime).getTime();
@@ -104,3 +107,26 @@ export function counting(count: string) {
     return `${count} view`;
   }
 }
+
+export const handleAddToRecents = (videoData: Iitem) => {
+  const isDuplicateVideos = recentvideos.find(
+    (video) => video.id.videoId === videoData.id.videoId
+  );
+  if (!isDuplicateVideos) {
+    recentvideos.unshift(videoData);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("recentVideos", JSON.stringify(recentvideos));
+    }
+  }
+};
+
+export const handleGetbackVideoRecents = (videoData: Iitem) => {
+  const isDuplicateVideos = recentvideos.find(
+    (video) => video.id.videoId === videoData.id.videoId
+  );
+  if (!isDuplicateVideos) {
+    if (videoData) {
+      recentvideos.unshift(videoData);
+    }
+  }
+};

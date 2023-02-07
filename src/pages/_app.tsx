@@ -12,6 +12,7 @@ import LeftSidebar from "@/components/LeftSidebar";
 import { useRouter } from "next/dist/client/router";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AppDrawer from "@/components/AppDrawer";
+import { handleGetbackVideoRecents } from "@/utils/contants";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -34,6 +35,12 @@ export default function App({ Component, pageProps }: AppProps) {
         window.document.documentElement.classList.replace("dark", "light");
       } else {
         window.document.documentElement.classList.replace("light", "dark");
+      }
+      if (window.localStorage.recentVideos) {
+        const recentVideos = JSON.parse(
+          window.localStorage.getItem("recentVideos")!
+        );
+        handleGetbackVideoRecents(recentVideos);
       }
     }
   }, []);
