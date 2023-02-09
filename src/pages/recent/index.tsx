@@ -17,7 +17,7 @@ const RecentVideosList = () => {
         back to watch them
       </p>
       {recentvideos.length <= 0 ? (
-        <div className="w-2/3 lg:w-1/3 mx-auto mt-28">
+        <div className="w-1/2 lg:w-1/3 mx-auto mt-16 lg:mt-28">
           <img src="/no-data.svg" alt="no-data.svg" />
           <p className="opacity-75 text-red-600 dark:text-red-300 font-medium uppercase text-sm text-center">
             Hmmmm its looks like is there is no data yet to show you.

@@ -7,7 +7,7 @@ function CategoriesUpperbar() {
   const { asPath } = useRouter();
 
   return (
-    <div className="w-full sticky z-20 top-14 shadow-lg h-fit">
+    <div className="w-full sticky z-20 top-14 shadow-md h-fit bg-gray-100 dark:bg-zinc-700 pb-4 px-3">
       <ul className="upper-category-bar">
         {categoryBar.map((item, index) => (
           <Link

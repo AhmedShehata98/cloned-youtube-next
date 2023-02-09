@@ -28,7 +28,7 @@
     @apply !opacity-100 !translate-x-0  transition-all;
   }
   .yt-card {
-    @apply flex flex-col rounded-sm basis-full sm:basis-[48%] md:basis-[30%] lg:basis-[23%] shadow-sm overflow-hidden transition-transform duration-500 hover:-translate-y-1.5;
+    @apply flex flex-col rounded-sm basis-full sm:basis-[48%] md:basis-[30%] lg:basis-[24%] shadow-sm overflow-hidden transition-transform duration-500 hover:-translate-y-1.5;
   }
   .prevent-scroll {
     @apply max-h-screen fixed inset-0;
@@ -50,9 +50,6 @@
   }
   .sidebar-link-active {
     @apply bg-red-500 !text-white opacity-100 translate-x-3 font-semibold;
-  }
-  .sidemenu-btn {
-    @apply grid place-content-center md:hidden;
   }
   .channel-cover {
     @apply w-full h-52 overflow-hidden bg-no-repeat bg-cover bg-center aspect-video lg:border-t border-slate-400;

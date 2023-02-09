@@ -107,15 +107,6 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
     <header className="yt-header">
       <section className="yt-container flex justify-start items-center">
         <div className="flex items-center justify-start gap-3 lg:gap-6 w-fit lg:w-1/5 pl-1 pr-3">
-          <button
-            type="button"
-            className="sidemenu-btn"
-            id="sidemenuBtn"
-            onClick={(ev: MouseEvent) => handlerShowSidebar(ev)}
-          >
-            <IoMenu className="text-3xl dark:text-white pointer-events-none" />
-            <IoCloseSharp className="hidden text-3xl dark:text-white pointer-events-none" />
-          </button>
           {!showInputSearch && <Logo />}
         </div>
         <form

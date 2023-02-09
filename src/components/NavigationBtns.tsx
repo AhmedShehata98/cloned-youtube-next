@@ -23,15 +23,19 @@ function NavigationBtns() {
           key={"recent"}
           href={"/recent"}
           title="Recents"
-          className={`navbar-btn-link`}
+          className={`navbar-btn-link ${
+            asPath.endsWith("/recent") ? "navbar-btn-link-active" : ""
+          }`}
         >
           <IoTimer />
         </Link>
         <Link
-          key={"save"}
-          href={"/"}
+          key={"saved"}
+          href={"/saved"}
           title="saved"
-          className={`navbar-btn-link`}
+          className={`navbar-btn-link ${
+            asPath.endsWith("/saved") ? "navbar-btn-link-active" : ""
+          }`}
         >
           <IoBookmark />
         </Link>
