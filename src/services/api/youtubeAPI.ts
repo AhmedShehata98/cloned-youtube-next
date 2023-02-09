@@ -10,13 +10,13 @@ const ENDPOINTS = {
   channelDetails: "/channels",
   playlistDetails: "/playlists",
 };
-const getByCategoryOptions = (query: string) => ({
+const getByCategoryOptions = (query: string, pageNumber: number = 25) => ({
   method: "GET",
   url: `${API_URL}${ENDPOINTS.search}`,
   params: {
     part: "id,snippet",
     q: query,
-    maxResults: "25",
+    maxResults: pageNumber,
     regionCode: "EG",
     order: "date",
   },
@@ -94,8 +94,11 @@ const playlistVideosOptions = (playlistID: string) => ({
   "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
 });
 // deffinition of fetcher's function's "GETTING FROM API"
-const videosByCategoryFetcher = async (categoty: string = "New") => {
-  const res = await axios.request(getByCategoryOptions(categoty));
+const videosByCategoryFetcher = async (
+  categoty: string = "New",
+  pageNumber?: number
+) => {
+  const res = await axios.request(getByCategoryOptions(categoty, pageNumber));
   const data: IYTVideosResponse = await res.data;
   return data;
 };

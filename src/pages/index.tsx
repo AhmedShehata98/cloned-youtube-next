@@ -17,18 +17,22 @@ import YTListWrapper from "@/components/YTListWrapper";
 import ChannelCard from "@/components/ChannelCard";
 import PlayListCard from "@/components/PlayListCard";
 import CategoriesUpperbar from "@/components/CategoriesUpperbar";
+import { useState } from "react";
+import PagginationBar from "@/components/PagginationBar";
 
 const Home = ({
   initialHomeData,
   isErrorInitialHomeData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [pageNumber, setPageNumber] = useState<number>(26);
   const { data, isFetched, isLoading, isError, isPaused } =
     useQuery<IYTVideosResponse>({
-      queryKey: ["categoryVideos"],
-      queryFn: () => videosByCategoryFetcher("popular in egypt"),
+      queryKey: ["categoryVideos", pageNumber],
+      queryFn: () => videosByCategoryFetcher("popular in egypt", pageNumber),
       retry: 2,
       initialData: initialHomeData.queries[0]?.state.data,
       enabled: initialHomeData.queries[0] ? true : false,
+      keepPreviousData: true,
     });
 
   return (
@@ -57,6 +61,11 @@ const Home = ({
           renderChannelItem={(channel) => <ChannelCard channel={channel} />}
           LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
           ErrorComponent={<ErrorFetchingData />}
+        />
+        <PagginationBar
+          totalPages={data?.pageInfo.totalResults}
+          currentPage={pageNumber}
+          onPageChange={() => setPageNumber((currentNum) => currentNum + 5)}
         />
       </div>
     </>
