@@ -13,6 +13,7 @@ import { useRouter } from "next/dist/client/router";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AppDrawer from "@/components/AppDrawer";
 import { handleGetbackVideoRecents } from "@/utils/contants";
+import NavigationBtns from "@/components/NavigationBtns";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -36,12 +37,6 @@ export default function App({ Component, pageProps }: AppProps) {
       } else {
         window.document.documentElement.classList.replace("light", "dark");
       }
-      if (window.localStorage.recentVideos) {
-        const recentVideos = JSON.parse(
-          window.localStorage.getItem("recentVideos")!
-        );
-        handleGetbackVideoRecents(recentVideos);
-      }
     }
   }, []);
 
@@ -51,11 +46,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <Headerbar setShowSidebar={setShowSidebar} />
         {/* <AppDrawer showing={showSidebar} /> */}
         <main className="min-h-screen w-full flex justify-center items-center bg-gray-50 dark:bg-zinc-700">
-          <section className="yt-container flex flex-row items-start justify-start">
+          <section className="yt-container min-h-screen flex flex-row items-start justify-start">
             {!pathname.includes("/watch") && <LeftSidebar show={showSidebar} />}
             <Component {...pageProps} />
           </section>
         </main>
+        <NavigationBtns />
         <LoadingSpinner isLoading={LoadingScreen} />
         <ReactQueryDevtools panelPosition="bottom" />
       </Hydrate>

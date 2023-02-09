@@ -16,6 +16,7 @@ import ErrorFetchingData from "@/components/ErrorFetchingData";
 import YTListWrapper from "@/components/YTListWrapper";
 import ChannelCard from "@/components/ChannelCard";
 import PlayListCard from "@/components/PlayListCard";
+import CategoriesUpperbar from "@/components/CategoriesUpperbar";
 
 const Home = ({
   initialHomeData,
@@ -24,7 +25,7 @@ const Home = ({
   const { data, isFetched, isLoading, isError, isPaused } =
     useQuery<IYTVideosResponse>({
       queryKey: ["categoryVideos"],
-      queryFn: () => videosByCategoryFetcher("New"),
+      queryFn: () => videosByCategoryFetcher("popular in egypt"),
       retry: 2,
       initialData: initialHomeData.queries[0]?.state.data,
       enabled: initialHomeData.queries[0] ? true : false,
@@ -39,6 +40,7 @@ const Home = ({
         <link rel="icon" href="/youtube-logo-png-2075.png" />
       </Head>
       <div className="w-full lg:w-[927px] mx-auto ">
+        <CategoriesUpperbar />
         <YTListWrapper
           title={"recommended"}
           data={data}
@@ -69,7 +71,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   try {
     await queryClient.prefetchQuery({
       queryKey: [`categoryVideos`],
-      queryFn: () => videosByCategoryFetcher("New"),
+      queryFn: () => videosByCategoryFetcher("popular in egypt"),
     });
     return {
       props: {

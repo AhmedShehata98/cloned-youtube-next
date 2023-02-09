@@ -74,7 +74,7 @@ export const categoryBar = [
     link: "popular",
   },
 ];
-
+export const recentVideosLocalStorageKey = "recent-videos";
 export const recentvideos: Iitem[] = [];
 
 export function formatElapsedTime(publishedTime: string) {
@@ -108,25 +108,31 @@ export function counting(count: string) {
   }
 }
 
-export const handleAddToRecents = (videoData: Iitem) => {
-  const isDuplicateVideos = recentvideos.find(
-    (video) => video.id.videoId === videoData.id.videoId
+const isDuplicated = (videoData: Iitem) => {
+  return recentvideos.find(
+    (video) => video.snippet.title === videoData.snippet.title
   );
-  if (!isDuplicateVideos) {
-    recentvideos.unshift(videoData);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("recentVideos", JSON.stringify(recentvideos));
+};
+
+export const handleAddToRecents = (videoData: Iitem) => {
+  if (recentvideos.length >= 0) {
+    if (!isDuplicated(videoData)) {
+      recentvideos.unshift(videoData);
+      window.localStorage.setItem(
+        recentVideosLocalStorageKey,
+        JSON.stringify(recentvideos)
+      );
     }
   }
 };
 
-export const handleGetbackVideoRecents = (videoData: Iitem) => {
-  const isDuplicateVideos = recentvideos.find(
-    (video) => video.id.videoId === videoData.id.videoId
-  );
-  if (!isDuplicateVideos) {
-    if (videoData) {
-      recentvideos.unshift(videoData);
+export const handleGetbackVideoRecents = () => {
+  if (recentvideos.length === 0) {
+    if (window.localStorage.getItem(recentVideosLocalStorageKey)) {
+      const parsedRecentVideos = JSON.parse(
+        window.localStorage.getItem(recentVideosLocalStorageKey)!
+      );
+      recentvideos.unshift(...parsedRecentVideos);
     }
   }
 };

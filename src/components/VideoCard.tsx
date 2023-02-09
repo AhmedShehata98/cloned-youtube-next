@@ -8,15 +8,15 @@ interface IVideoCardProps {
 }
 function VideoCard({ videoData }: IVideoCardProps) {
   return (
-    <div key={videoData?.snippet.title} className="yt-card">
+    <div key={videoData?.snippet?.title} className="yt-card">
       <Link
         href={{
           query: {
-            vidId: videoData.id.videoId,
+            vidId: videoData.id?.videoId,
           },
           pathname: "/watch",
         }}
-        title={`Go to video ${videoData.snippet.title}`}
+        title={`Go to video ${videoData?.snippet?.title}`}
         className="w-full h-fit aspect-video flex items-center justify-center rounded-sm"
         onClick={() => {
           handleAddToRecents(videoData);
@@ -36,7 +36,7 @@ function VideoCard({ videoData }: IVideoCardProps) {
           <Link
             href={{
               query: {
-                vidId: videoData.id.videoId,
+                vidId: videoData.id?.videoId,
               },
               pathname: "/watch",
             }}
@@ -48,7 +48,7 @@ function VideoCard({ videoData }: IVideoCardProps) {
           <Link
             href={{
               pathname: "/channels",
-              query: { channelId: videoData.snippet.channelId },
+              query: { channelId: videoData.snippet?.channelId },
             }}
             title={"Go To This Channel"}
           >
@@ -57,11 +57,12 @@ function VideoCard({ videoData }: IVideoCardProps) {
             </bdi>
           </Link>
           <small className="opacity-60">
-            {Intl.DateTimeFormat("en-US", {
-              dateStyle: "medium",
-              formatMatcher: "best fit",
-              timeStyle: "medium",
-            }).format(new Date(videoData?.snippet?.publishTime))}
+            {videoData.snippet?.publishTime &&
+              Intl.DateTimeFormat("en-US", {
+                dateStyle: "medium",
+                formatMatcher: "best fit",
+                timeStyle: "medium",
+              }).format(new Date(videoData?.snippet?.publishTime))}
           </small>
         </div>
       </div>

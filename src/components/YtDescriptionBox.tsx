@@ -19,7 +19,6 @@ function YtDescriptionBox({
   useEffect(() => {
     if (!showMore) {
       window.scrollTo({ behavior: "smooth", top: 0 });
-      console.log("scrolled");
     }
   }, [showMore]);
 
@@ -34,7 +33,8 @@ function YtDescriptionBox({
       <div className="yt-description-box">
         <span className="flex gap-3 p-2 w-full">
           <p className="font-semibold capitalize text-sm">
-            {isFetched && counting("1000000000")}
+            {isFetched &&
+              counting(videoDetailsData.items[0].statistics.viewCount)}
           </p>
           -
           <p className="font-semibold capitalize text-sm">
@@ -50,12 +50,15 @@ function YtDescriptionBox({
         </span>
         <span className={`description-text ${showMore ? "h-auto" : "h-16"} `}>
           {filteredYtDescriptionsArr &&
-            filteredYtDescriptionsArr.map((text) => {
+            filteredYtDescriptionsArr.map((text, idx) => {
               const isLink = text.includes("https") || text.includes("http");
               const theLink = text.slice(text.indexOf("http"));
 
               return isLink ? (
-                <span className="flex flex-col justify-start items-start">
+                <span
+                  key={idx}
+                  className="flex flex-col justify-start items-start"
+                >
                   <small className="opacity-90">{text}</small>
                   <a
                     className="text-sm text-sky-600"
@@ -69,7 +72,9 @@ function YtDescriptionBox({
                 </span>
               ) : (
                 <>
-                  <small className="opacity-90">{text}</small>
+                  <small key={idx} className="opacity-90">
+                    {text}
+                  </small>
                   <br />
                 </>
               );

@@ -11,6 +11,7 @@ import PlayListCard from "@/components/PlayListCard";
 import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 import VideoCard from "@/components/VideoCard";
 import YTListWrapper from "@/components/YTListWrapper";
+import CategoriesUpperbar from "@/components/CategoriesUpperbar";
 
 const VideosList = ({
   InitialVideosData,
@@ -39,6 +40,7 @@ const VideosList = ({
         <title>Cloned Youtube | {category}</title>
       </Head>
       <div className="w-full lg:w-[927px] mx-auto">
+        <CategoriesUpperbar />
         <YTListWrapper
           title={category as string}
           data={categoryVideos!}

@@ -3,21 +3,16 @@ import axios from "axios";
 
 const API_URL: string = "https://youtube-v31.p.rapidapi.com";
 const ENDPOINTS = {
-  suggested: "/search",
   captions: "/captions",
   search: "/search",
-  allVideos: "/search",
   videoComments: "/commentThreads",
   videosDetails: "/videos",
   channelDetails: "/channels",
-  channelVideos: "/search",
-  relatedVideos: "/search",
-  platlistVideos: "/playlistItems",
-  platlistDetails: "/playlists",
+  playlistDetails: "/playlists",
 };
 const getByCategoryOptions = (query: string) => ({
   method: "GET",
-  url: `${API_URL}${ENDPOINTS.allVideos}`,
+  url: `${API_URL}${ENDPOINTS.search}`,
   params: {
     part: "id,snippet",
     q: query,
@@ -32,7 +27,7 @@ const getByCategoryOptions = (query: string) => ({
 });
 const channelEndpointOptions = (channelId: string) => ({
   method: "GET",
-  url: "https://youtube-v31.p.rapidapi.com/channels",
+  url: `${API_URL}${ENDPOINTS.channelDetails}`,
   params: {
     part: "id,snippet",
     id: channelId,
@@ -43,9 +38,10 @@ const channelEndpointOptions = (channelId: string) => ({
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 });
+console.log(`${API_URL}/${ENDPOINTS.channelDetails}`);
 const getChannelVideosOptions = (channelID: string) => ({
   method: "GET",
-  url: "https://youtube-v31.p.rapidapi.com/search",
+  url: `${API_URL}${ENDPOINTS.search}`,
   params: {
     channelId: channelID,
     part: "snippet,id",
@@ -60,7 +56,7 @@ const getChannelVideosOptions = (channelID: string) => ({
 });
 const getVideoDetailsOptions = (videoId: string) => ({
   method: "GET",
-  url: `https://youtube-v31.p.rapidapi.com${ENDPOINTS.videosDetails}`,
+  url: `${API_URL}${ENDPOINTS.videosDetails}`,
   params: {
     part: "contentDetails,snippet,statistics",
     regionCode: "EG",
@@ -73,7 +69,7 @@ const getVideoDetailsOptions = (videoId: string) => ({
 });
 const getRelatedVideosOptions = (videoId: string) => ({
   method: "GET",
-  url: `https://youtube-v31.p.rapidapi.com${ENDPOINTS.relatedVideos}`,
+  url: `${API_URL}${ENDPOINTS.search}`,
   params: {
     part: "id,snippet",
     id: videoId,
@@ -87,7 +83,7 @@ const getRelatedVideosOptions = (videoId: string) => ({
 });
 const playlistVideosOptions = (playlistID: string) => ({
   method: "GET",
-  url: "https://youtube-v31.p.rapidapi.com/playlistItems",
+  url: `${API_URL}${ENDPOINTS.playlistDetails}`,
   params: {
     part: "snippet",
     maxResults: "30",
@@ -95,7 +91,7 @@ const playlistVideosOptions = (playlistID: string) => ({
     playlistId: playlistID,
   },
   "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
-  "X-RapidAPI-Key": "c61be3ca42mshf758a4f25e72895p1ca436jsn841782450e33",
+  "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
 });
 // deffinition of fetcher's function's "GETTING FROM API"
 const videosByCategoryFetcher = async (categoty: string = "New") => {
