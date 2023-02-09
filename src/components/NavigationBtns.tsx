@@ -9,6 +9,7 @@ function NavigationBtns() {
     <div className="navbar-btns">
       <nav className="w-full flex justify-around">
         <Link
+          key={"home"}
           href={"/"}
           className={`navbar-btn-link ${
             asPath.endsWith("/") ? "navbar-btn-link-active" : ""
@@ -17,10 +18,21 @@ function NavigationBtns() {
         >
           <IoHome />
         </Link>
-        <Link href={"/recent"} title="Recents" className={`navbar-btn-link`}>
+
+        <Link
+          key={"recent"}
+          href={"/recent"}
+          title="Recents"
+          className={`navbar-btn-link`}
+        >
           <IoTimer />
         </Link>
-        <Link href={"/"} title="saved" className={`navbar-btn-link`}>
+        <Link
+          key={"save"}
+          href={"/"}
+          title="saved"
+          className={`navbar-btn-link`}
+        >
           <IoBookmark />
         </Link>
       </nav>

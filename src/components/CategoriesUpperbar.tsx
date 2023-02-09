@@ -11,7 +11,7 @@ function CategoriesUpperbar() {
       <ul className="upper-category-bar">
         {categoryBar.map((item, index) => (
           <Link
-            key={index}
+            key={item.id}
             href={{ pathname: "explore", query: { category: item.link } }}
             className={`upper-category-link ${
               asPath.endsWith(`${item.link}`)
