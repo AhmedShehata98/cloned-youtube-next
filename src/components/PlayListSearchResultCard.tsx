@@ -47,7 +47,7 @@ function PlayListSearchResultCard({
                 channelId: playListData.snippet.channelId,
               },
             }}
-            className="uppercase font-semibold opacity-80 text-sm"
+            className="uppercase font-semibold opacity-80 text-sm text-black dark:text-white"
             title={`Go to ${playListData.snippet.channelTitle} channel`}
           >
             {playListData.snippet.channelTitle}
@@ -58,9 +58,9 @@ function PlayListSearchResultCard({
             pathname: "/playlist",
             query: { list: playListData.id.playlistId },
           }}
-          className="inline-block text-sm capitalize mt-auto"
+          className="inline-block text-sm capitalize mt-auto text-black dark:text-white"
         >
-          view full playlist video
+          view full playlist videos
         </Link>
       </div>
     </div>

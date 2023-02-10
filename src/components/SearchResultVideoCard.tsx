@@ -1,6 +1,6 @@
 import React from "react";
 import { Iitem } from "@/Models/Youtube";
-import { formatElapsedTime } from "@/utils/contants";
+import { formatStampTime } from "@/utils/contants";
 import Link from "next/link";
 interface ISearchResultVideoCardProps {
   SearchResultData: Iitem;
@@ -41,7 +41,7 @@ function SearchResultVideoCard({
           {snippet.title}
         </Link>
         <small className="opacity-70 font-medium">
-          {formatElapsedTime(snippet.publishTime)}
+          {formatStampTime(snippet.publishTime)}
         </small>
         <span className="flex justify-start items-center gap-2">
           <i className="fi fi-rr-desktop-wallpaper leading-3 bg-slate-900 text-red-400 p-2 rounded-full aspect-square inline-block"></i>

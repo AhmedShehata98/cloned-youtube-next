@@ -77,18 +77,35 @@ export const categoryBar = [
 export const recentVideosLocalStorageKey = "recent-videos";
 export const recentvideos: Iitem[] = [];
 
-export function formatElapsedTime(publishedTime: string) {
-  const TimeNow = new Date().getTime();
-  const published = new Date(publishedTime).getTime();
-  const timeDiff = TimeNow - published;
-  const seconds = Math.floor(timeDiff / 1000);
+export function formatStampTime(publishedTime: string) {
+  const dateNow = Date.now();
+  const deff = dateNow - new Date(publishedTime).getTime();
+  const seconds = Math.floor(deff / 1000);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30);
+  const years = Math.floor(months / 12);
 
-  if (seconds <= 60) return `${seconds} seconds ago`;
-  if (seconds >= 60) return `${minutes} minutes ago`;
-  if (minutes <= 60) return `${minutes} minutes ago`;
-  if (minutes >= 60) return `${hours} hours ago`;
+  //
+  if (years >= 1) {
+    return `${years} years ago`;
+  }
+  if (months >= 1 && months <= 12) {
+    return `${months} months ago`;
+  }
+  if (days >= 1 && days <= 31) {
+    return `${days} days ago`;
+  }
+  if (hours >= 1 && hours <= 24) {
+    return `${hours} hours ago`;
+  }
+  if (minutes >= 1 && minutes <= 60) {
+    return `${minutes} minutes ago`;
+  }
+  if (seconds <= 60) {
+    return `${seconds} second`;
+  }
 }
 
 export function counting(count: string) {

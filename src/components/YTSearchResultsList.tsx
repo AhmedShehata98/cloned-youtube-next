@@ -29,7 +29,7 @@ function YTSearchResultsList({
   const fakeLaodingDataArr = new Array(10).fill("fake-data");
   if (isFetched && !isLoading) {
     return (
-      <div className="px-3 flex flex-col mt-2">
+      <div className="px-3 flex flex-col mt-2 mb-8">
         <span className="flex mb-6 mt-3 ">
           <h3 className="font-semibold text-lg uppercase text-red-600 mr-3">
             search about :

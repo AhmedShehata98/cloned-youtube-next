@@ -17,7 +17,7 @@ function ChannelSearchResultCard({
         },
       }}
       key={channelResultData.id.channelId || channelResultData.id.videoId}
-      className="flex items-start justify-start rounded-sm shadow-sm border bg-gray-100 mt-8"
+      className="flex items-start justify-start rounded-sm shadow-sm border dark:border-zinc-500 bg-gray-100 dark:bg-zinc-800 mt-8"
     >
       <figure className="w-[35%] flex items-center justify-center py-8 px-2">
         <img
