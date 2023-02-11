@@ -1,8 +1,12 @@
 import { IVideoDetails } from "@/Models/Youtube";
 import { counting } from "@/utils/contants";
-import { useCallback, useRef, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
-import { IoDownloadOutline } from "react-icons/io5";
+import {
+  IoCheckmarkCircleOutline,
+  IoDownloadOutline,
+  IoShareSocialOutline,
+} from "react-icons/io5";
 
 interface IVideoReactionProps {
   videoDetailsData: IVideoDetails;
@@ -14,7 +18,26 @@ function VideoReaction({
   isLoading,
   videoDetailsData,
 }: IVideoReactionProps) {
-  const LikesCountRef = useRef<HTMLElement | null>(null);
+  const [isCopeid, setIsCopeid] = useState(false);
+  const shareLink = async () => {
+    if ("clipboard" in navigator) {
+      navigator.clipboard
+        .writeText(`https://youtu.be/${videoDetailsData.items[0].id}`)
+        .then(() => setIsCopeid(true));
+    }
+  };
+
+  useEffect(() => {
+    let timeout: number;
+    if (isCopeid) {
+      timeout = +setTimeout(() => {
+        setIsCopeid(false);
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isCopeid]);
 
   return (
     <div className="flex-1 flex md:justify-end gap-3">
@@ -33,6 +56,23 @@ function VideoReaction({
       <button className="flex justify-center items-center rounded-full shadow-md bg-gray-300 dark:bg-zinc-900 px-4 py-1 gap-2 hover:bg-stone-300 hover:dark:bg-zinc-800 hover:first-of-type:!text-red-700 dark:hover:first-of-type:!text-red-400 capitalize dark:text-white font-semibold">
         <IoDownloadOutline className="leading-3" />
         <small>download</small>
+      </button>
+      <button
+        className="flex justify-center items-center rounded-full shadow-md bg-gray-300 dark:bg-zinc-900 px-4 py-1 gap-2 hover:bg-stone-300 hover:dark:bg-zinc-800 hover:first-of-type:!text-red-700 dark:hover:first-of-type:!text-red-400 capitalize dark:text-white font-semibold"
+        onClick={(e) => shareLink()}
+      >
+        {isCopeid && (
+          <>
+            <IoCheckmarkCircleOutline className="leading-3 text-emerald-600 dark:text-emerald-400" />
+            <small>copied</small>
+          </>
+        )}
+        {!isCopeid && (
+          <>
+            <IoShareSocialOutline className="leading-3" />
+            <small>share</small>
+          </>
+        )}
       </button>
     </div>
   );
