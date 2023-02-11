@@ -19,7 +19,7 @@
 @tailwind components;
 @layer components {
   .yt-container {
-    @apply w-full p-1 mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
+    @apply w-full mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
   }
   .show-sidebar {
     @apply !translate-x-0 !opacity-100 transition-all;
@@ -40,7 +40,7 @@
     @apply hidden lg:flex w-56 sticky top-20;
   }
   .hide-loading-screen {
-    @apply opacity-0 pointer-events-none translate-x-1;
+    @apply opacity-0 pointer-events-none -translate-y-7;
   }
   .yt-playlist-search {
     @apply relative w-full flex flex-col md:flex-row items-start justify-start gap-2 bg-gray-200 dark:bg-zinc-800 border border-gray-400 dark:border-zinc-500 rounded overflow-hidden;

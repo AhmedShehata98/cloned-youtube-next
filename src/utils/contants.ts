@@ -108,17 +108,17 @@ export function formatStampTime(publishedTime: string) {
   }
 }
 
-export function counting(count: string) {
+export function counting(count: string, label: string = "") {
   if (Number(count) >= 1_000_000) {
     return `${count.toString().slice(0, 1)}, ${count
       .toString()
-      .slice(1, 3)} M views`;
+      .slice(1, 3)} M ${label}`;
   }
   if (Number(count) >= 1000 && Number(count) <= 999_999) {
-    return `${count.toString().slice(0, 3)} K views`;
+    return `${count.toString().slice(0, 3)} K ${label}`;
   }
   if (Number(count) >= 999) {
-    return `${count} views`;
+    return `${count} ${label}`;
   }
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
@@ -12,6 +12,7 @@ import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 import VideoCard from "@/components/VideoCard";
 import YTListWrapper from "@/components/YTListWrapper";
 import CategoriesUpperbar from "@/components/CategoriesUpperbar";
+import PagginationBar from "@/components/PagginationBar";
 
 const VideosList = ({
   InitialVideosData,
@@ -19,6 +20,7 @@ const VideosList = ({
   const {
     query: { category },
   } = useRouter();
+  const [pageNumber, setPageNumber] = useState<number>(27);
 
   const {
     data: categoryVideos,
@@ -27,11 +29,12 @@ const VideosList = ({
     isError,
     isPaused,
   } = useQuery<IYTVideosResponse>({
-    queryKey: [`categoryVideos`, category],
+    queryKey: [`categoryVideos`, category, pageNumber],
     queryFn: () => videosByCategoryFetcher(category?.toString()),
     retry: 2,
     initialData: InitialVideosData.queries[0]?.state.data,
     enabled: InitialVideosData.queries[0] ? true : false,
+    keepPreviousData: true,
   });
 
   return (
@@ -55,6 +58,11 @@ const VideosList = ({
           renderChannelItem={(channel) => <ChannelCard channel={channel} />}
           LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
           ErrorComponent={<ErrorFetchingData />}
+        />
+        <PagginationBar
+          currentPage={pageNumber}
+          totalPages={categoryVideos?.pageInfo.totalResults}
+          onPageChange={() => setPageNumber((prev) => (prev += 6))}
         />
       </div>
     </>

@@ -1,6 +1,7 @@
 import { IThumbnailProps, IThumbnailTypes, Iitem } from "@/Models/Youtube";
 import Link from "next/link";
 import React from "react";
+import { IoTvSharp } from "react-icons/io5";
 import { handleAddToRecents } from "@/utils/contants";
 
 interface IVideoCardProps {
@@ -30,7 +31,7 @@ function VideoCard({ videoData }: IVideoCardProps) {
       </Link>
       <div className="yt-videocard-details">
         <span className="w-[18%] aspect-square bg-red-300 rounded-full flex justify-center items-center">
-          <i className="fi fi-rr-desktop-wallpaper leading-3 text-slate-900"></i>
+          <IoTvSharp className="leading-3 text-slate-900" />
         </span>
         <div className="w-4/5 flex flex-col">
           <Link

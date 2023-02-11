@@ -63,7 +63,7 @@ function YtDescriptionBox({
 
   const viewCount = useMemo(() => {
     if (isFetched) {
-      return counting(videoDetailsData.items[0].statistics.viewCount);
+      return counting(videoDetailsData.items[0].statistics.viewCount, "view");
     }
   }, [isFetched, isLoading, videoDetailsData.items?.[0].statistics.viewCount]);
   // scroll to top when close description box

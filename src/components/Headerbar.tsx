@@ -125,7 +125,7 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
             <button
               type="button"
               onClick={() => handleSearch()}
-              className="text-lg text-gray-500 dark:text-zinc-200 flex justify-center items-center hover:bg-stone-300 dark:hover:bg-zinc-300 hover:text-black py-2 pl-5 pr-4"
+              className="text-lg text-gray-500 dark:text-zinc-200 flex justify-center items-center hover:bg-stone-300 dark:hover:bg-zinc-700 hover:text-black py-2 pl-5 pr-4"
             >
               <IoSearchSharp className="fi fi-rr-search leading-3" />
             </button>

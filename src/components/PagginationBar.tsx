@@ -1,3 +1,4 @@
+import { counting } from "@/utils/contants";
 import React, { MouseEventHandler, useEffect } from "react";
 import { MdOutlineExpandMore } from "react-icons/md";
 
@@ -19,7 +20,7 @@ function PagginationBar({
         </small>
         <small>From</small>
         <small className="min-w-fit bg-sky-500 px-3 rounded-md !text-blue-900 font-semibold">
-          {totalPages}
+          {counting(totalPages)}
         </small>
       </div>
       <button

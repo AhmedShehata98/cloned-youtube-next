@@ -15,7 +15,7 @@ function LoadingSpinner({ isLoading }: { isLoading: boolean }) {
   return (
     <div
       ref={loadingScreenRef}
-      className="absolute z-50 top-0 w-full h-screen bg-white dark:bg-zinc-900 flex flex-col items-center justify-center"
+      className="absolute z-50 top-0 w-full h-screen bg-white dark:bg-zinc-900 flex flex-col items-center justify-center transition-all duration-500"
     >
       <div className="h-1/2 w-full flex flex-col justify-center">
         <span className="flex justify-center items-center gap-2">

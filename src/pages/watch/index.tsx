@@ -1,20 +1,21 @@
 import PlayListCard from "@/components/PlayListCard";
 import RelatedVideosList from "@/components/RelatedVideosList";
 import RelatedVideosCard from "@/components/RelatedVideosCard";
-import { IVideoDetails, IYtChannel, IYtSuggestVideos } from "@/Models/Youtube";
+import { IVideoDetails, IYtSuggestVideos } from "@/Models/Youtube";
 import {
   getRelatedVideosFetcher,
   getVideoDetailsFetcher,
 } from "@/services/api/youtubeAPI";
 import { dehydrate, QueryClient, useQueries } from "@tanstack/react-query";
-import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import ReactPlayer from "react-player";
 import Head from "next/head";
 import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 import YtDescriptionBox from "@/components/YtDescriptionBox";
 import VideoReaction from "@/components/VideoReaction";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
   const {
@@ -67,7 +68,7 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
           {/* video content wrapper */}
           <div className="video-content-wrapper">
             <h3 className="font-semibold text-lg capitalize">
-              {videoDetailsData?.items?.[0].snippet.title}
+              {videoDetailsData?.items?.[0].snippet.localized.title}
             </h3>
             <div className="w-full flex justify-between items-center gap-3 flex-wrap">
               {/* channel info box */}
@@ -75,14 +76,19 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
                 <figure className="w-8 md:w-11 h-8 md:h-11 grid place-content-center bg-red-400 rounded-full">
                   <i className="fi fi-sr-screen leading-3 text-xl"></i>
                 </figure>
-                <div>
+                <div className="flex items-center justify-center gap-2">
                   <b className="opacity-70 leading-5 h-8 overflow-hidden">
                     {videoDetailsData?.items?.[0].snippet.channelTitle}
                   </b>
+                  {videoDetailsData?.items?.[0].contentDetails
+                    .licensedContent && (
+                    <IoCheckmarkCircle className="text-xl text-zinc-500 dark:text-zinc-200 mb-2" />
+                  )}
                 </div>
               </div>
               <VideoReaction
                 videoDetailsData={videoDetailsData}
+                likedCount={videoDetailsData.items?.[0].statistics.likeCount}
                 isFetched={isFetchedVideoDetails}
                 isLoading={isLoadingVideoDetails}
               />

@@ -10,12 +10,14 @@ import {
 
 interface IVideoReactionProps {
   videoDetailsData: IVideoDetails;
+  likedCount: string;
   isLoading: boolean;
   isFetched: boolean;
 }
 function VideoReaction({
   isFetched,
   isLoading,
+  likedCount,
   videoDetailsData,
 }: IVideoReactionProps) {
   const [isCopeid, setIsCopeid] = useState(false);
@@ -43,10 +45,7 @@ function VideoReaction({
     <div className="flex-1 flex md:justify-end gap-3">
       <span className="w-36 h-8 flex justify-between items-center rounded-full overflow-hidden shadow-sm divide-x divide-gray-500 bg-gray-300 dark:bg-zinc-900 capitalize text-black dark:text-white font-semibold">
         <button className="h-full w-2/3 flex-1 flex justify-center items-center gap-2  hover:bg-stone-300 dark:hover:bg-zinc-800 hover:first:text-red-700 dark:hover:first-of-type:!text-red-400">
-          <p>
-            {isFetched &&
-              counting(videoDetailsData?.items?.[0]?.statistics?.likeCount)}
-          </p>
+          <p>{counting(likedCount, "")}</p>
           <AiOutlineLike className="leading-3 " />
         </button>
         <button className="h-full w-1/3 flex items-center justify-center rounded-tr-full rounded-br-full hover:bg-stone-300 hover:dark:bg-zinc-800 hover:first-of-type:!text-red-700">
