@@ -109,19 +109,16 @@ export function formatStampTime(publishedTime: string) {
 }
 
 export function counting(count: string) {
-  const countNumber: number = Number(count);
-  if (countNumber <= 99) {
-    return `${count} view`;
-  } else if (countNumber > 1000) {
-    return `${count[0]},${count[1]}${count[2]} K view`;
-  } else if (countNumber > 10_000) {
-    return `${count[0]}${count[1]},${count[2]}${count[3]} K view`;
-  } else if (countNumber > 100_000) {
-    return `${count[0]}${count[1]}${count[2]},${count[3]}${count[4]} K view`;
-  } else if (countNumber > 1_000_000) {
-    return `${count[0]},${count[1]}${count[2]} M view`;
-  } else {
-    return `${count} view`;
+  if (Number(count) >= 1_000_000) {
+    return `${count.toString().slice(0, 1)}, ${count
+      .toString()
+      .slice(1, 3)} M views`;
+  }
+  if (Number(count) >= 1000 && Number(count) <= 999_999) {
+    return `${count.toString().slice(0, 3)} K views`;
+  }
+  if (Number(count) >= 999) {
+    return `${count} views`;
   }
 }
 

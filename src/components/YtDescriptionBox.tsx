@@ -1,5 +1,5 @@
 import { IVideoDetails } from "@/Models/Youtube";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { counting } from "@/utils/contants";
 
 interface IYtDescriptionBoxProps {
@@ -13,9 +13,60 @@ function YtDescriptionBox({
   isFetched,
 }: IYtDescriptionBoxProps) {
   const [showMore, setShowMore] = useState<boolean>(false);
+
+  // split the description into lines
   const filteredYtDescriptionsArr =
     videoDetailsData?.items?.[0].snippet.localized.description.split("\n");
 
+  // useMemo function that takes a description content and modfies it
+  // to normal youtube description format ( text - links )
+  const modifiedDescriptionBoxContentArr = useMemo(() => {
+    if (isFetched) {
+      return filteredYtDescriptionsArr.map((text, idx) => {
+        const isLink = text.includes("https") || text.includes("http");
+        const theLink = text.slice(text.indexOf("http"));
+        return isLink ? (
+          <span key={idx} className="flex flex-col justify-start items-start">
+            <small className="opacity-90">{text}</small>
+            <a
+              className="text-sm text-sky-600"
+              href={theLink}
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              {theLink}
+            </a>
+            <br />
+          </span>
+        ) : (
+          <>
+            <small key={idx} className="opacity-80">
+              {text}
+            </small>
+            <br />
+          </>
+        );
+      });
+    }
+  }, [filteredYtDescriptionsArr]);
+
+  // formated video date
+  const formatedDate = useMemo(() => {
+    if (isFetched) {
+      return Intl.DateTimeFormat("en-US", {
+        dateStyle: "medium",
+        formatMatcher: "best fit",
+        timeStyle: "medium",
+      }).format(new Date(videoDetailsData.items?.[0].snippet.publishedAt));
+    }
+  }, [videoDetailsData.items?.[0].snippet.publishedAt]);
+
+  const viewCount = useMemo(() => {
+    if (isFetched) {
+      return counting(videoDetailsData.items[0].statistics.viewCount);
+    }
+  }, [isFetched, isLoading, videoDetailsData.items?.[0].statistics.viewCount]);
+  // scroll to top when close description box
   useEffect(() => {
     if (!showMore) {
       window.scrollTo({ behavior: "smooth", top: 0 });
@@ -32,53 +83,11 @@ function YtDescriptionBox({
     return (
       <div className="yt-description-box">
         <span className="flex gap-3 p-2 w-full">
-          <p className="font-semibold capitalize text-sm">
-            {isFetched &&
-              counting(videoDetailsData.items[0].statistics.viewCount)}
-          </p>
-          -
-          <p className="font-semibold capitalize text-sm">
-            {isFetched &&
-              Intl.DateTimeFormat("en-US", {
-                dateStyle: "medium",
-                formatMatcher: "best fit",
-                timeStyle: "medium",
-              }).format(
-                new Date(videoDetailsData.items?.[0].snippet.publishedAt)
-              )}
-          </p>
+          <p className="font-semibold capitalize text-sm">{viewCount}</p>-
+          <p className="font-semibold capitalize text-sm">{formatedDate}</p>
         </span>
         <span className={`description-text ${showMore ? "h-auto" : "h-16"} `}>
-          {filteredYtDescriptionsArr &&
-            filteredYtDescriptionsArr.map((text, idx) => {
-              const isLink = text.includes("https") || text.includes("http");
-              const theLink = text.slice(text.indexOf("http"));
-
-              return isLink ? (
-                <span
-                  key={idx}
-                  className="flex flex-col justify-start items-start"
-                >
-                  <small className="opacity-90">{text}</small>
-                  <a
-                    className="text-sm text-sky-600"
-                    href={theLink}
-                    target={"_blank"}
-                    rel="noreferrer"
-                  >
-                    {theLink}
-                  </a>
-                  <br />
-                </span>
-              ) : (
-                <>
-                  <small key={idx} className="opacity-90">
-                    {text}
-                  </small>
-                  <br />
-                </>
-              );
-            })}
+          {modifiedDescriptionBoxContentArr}
         </span>
         <button
           className="showmore-description-btn"

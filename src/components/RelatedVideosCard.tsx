@@ -1,6 +1,7 @@
 import { ISuggestVideoItems } from "@/Models/Youtube";
 import React from "react";
 import Link from "next/link";
+import { formatStampTime } from "@/utils/contants";
 
 interface IRelatedVideosCardProps {
   relatedVideo: ISuggestVideoItems;
@@ -32,9 +33,7 @@ function RelatedVideosCard({
         <small className="leading-3 mb-2 opacity-70 font-medium">
           {snippet.channelTitle}
         </small>
-        <p className="leading-3">
-          {new Date(snippet.publishedAt).toLocaleDateString()}
-        </p>
+        <p className="leading-3">{formatStampTime(snippet.publishedAt)}</p>
       </div>
     </Link>
   );
