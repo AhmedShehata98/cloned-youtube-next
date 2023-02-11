@@ -12,7 +12,7 @@ import LeftSidebar from "@/components/LeftSidebar";
 import { useRouter } from "next/dist/client/router";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AppDrawer from "@/components/AppDrawer";
-import { handleGetbackVideoRecents } from "@/utils/contants";
+import { handleGetbackVideoRecents } from "@/utils/historyStorage";
 import NavigationBtns from "@/components/NavigationBtns";
 
 export default function App({ Component, pageProps }: AppProps) {

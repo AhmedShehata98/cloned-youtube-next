@@ -1,5 +1,8 @@
 import VideoCard from "@/components/VideoCard";
-import { handleGetbackVideoRecents, recentvideos } from "@/utils/contants";
+import {
+  handleGetbackVideoRecents,
+  recentvideos,
+} from "@/utils/historyStorage";
 import React, { useEffect } from "react";
 
 const RecentVideosList = () => {

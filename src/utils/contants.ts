@@ -74,8 +74,6 @@ export const categoryBar = [
     link: "popular",
   },
 ];
-export const recentVideosLocalStorageKey = "recent-videos";
-export const recentvideos: Iitem[] = [];
 
 export function formatStampTime(publishedTime: string) {
   const dateNow = Date.now();
@@ -121,32 +119,3 @@ export function counting(count: string, label: string = "") {
     return `${count} ${label}`;
   }
 }
-
-const isDuplicated = (videoData: Iitem) => {
-  return recentvideos.find(
-    (video) => video.snippet.title === videoData.snippet.title
-  );
-};
-
-export const handleAddToRecents = (videoData: Iitem) => {
-  if (recentvideos.length >= 0) {
-    if (!isDuplicated(videoData)) {
-      recentvideos.unshift(videoData);
-      window.localStorage.setItem(
-        recentVideosLocalStorageKey,
-        JSON.stringify(recentvideos)
-      );
-    }
-  }
-};
-
-export const handleGetbackVideoRecents = () => {
-  if (recentvideos.length === 0) {
-    if (window.localStorage.getItem(recentVideosLocalStorageKey)) {
-      const parsedRecentVideos = JSON.parse(
-        window.localStorage.getItem(recentVideosLocalStorageKey)!
-      );
-      recentvideos.unshift(...parsedRecentVideos);
-    }
-  }
-};
