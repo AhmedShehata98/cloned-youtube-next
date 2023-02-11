@@ -110,7 +110,7 @@ export function formatStampTime(publishedTime: string) {
 
 export function counting(count: string, label: string = "") {
   if (Number(count) >= 1_000_000) {
-    return `${count.toString().slice(0, 1)}, ${count
+    return `${count.toString().slice(0, 1)},${count
       .toString()
       .slice(1, 3)} M ${label}`;
   }

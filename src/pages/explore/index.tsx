@@ -61,7 +61,7 @@ const VideosList = ({
         />
         <PagginationBar
           currentPage={pageNumber}
-          totalPages={categoryVideos?.pageInfo.totalResults}
+          totalPages={categoryVideos?.pageInfo.totalResults as number}
           onPageChange={() => setPageNumber((prev) => (prev += 6))}
         />
       </div>

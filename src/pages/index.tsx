@@ -63,7 +63,7 @@ const Home = ({
           ErrorComponent={<ErrorFetchingData />}
         />
         <PagginationBar
-          totalPages={data?.pageInfo.totalResults}
+          totalPages={data?.pageInfo.totalResults as number}
           currentPage={pageNumber}
           onPageChange={() => setPageNumber((currentNum) => currentNum + 5)}
         />

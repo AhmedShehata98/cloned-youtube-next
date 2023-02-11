@@ -13,6 +13,7 @@ import YTListWrapper from "@/components/YTListWrapper";
 import VideoCard from "@/components/VideoCard";
 import ErrorFetchingData from "@/components/ErrorFetchingData";
 import SkeletonVideoCard from "@/components/SkeletonVideoCard";
+import { counting } from "@/utils/contants";
 
 const ChannelDetails = ({
   inintialchannelDetails,
@@ -22,7 +23,7 @@ const ChannelDetails = ({
   } = useRouter();
 
   const [
-    { data: channelDetailsData, isFetched, isError, isLoading, isPaused },
+    { data: channelDetailsData, isPaused },
     {
       data: channelVideos,
       isFetched: isFetchedChannelVideos,
@@ -74,16 +75,18 @@ const ChannelDetails = ({
                 className="max-w-full object-cover"
               />
             </figure>
-            <span>
-              <b className="mb-2 inline-block text-sm md:text-base">
+            <span className="flex flex-col items-start justify-center">
+              <b className="mb-0 inline-block text-sm md:text-base">
                 {channelDetailsData?.items[0].snippet.title}
               </b>
-              <p className="mb-0 opacity-70  capitalize leading-3 text-sm md:text-base">
+              <p className="mb-0 opacity-60 capitalize leading-3 text-sm md:text-base">
                 {channelDetailsData?.items[0].snippet.customUrl}
               </p>
-              <small>
-                {channelDetailsData?.items[0].statistics.subscriberCount}{" "}
-                subscriber
+              <small className="leading-3 m-0">
+                {counting(
+                  channelDetailsData?.items[0].statistics.subscriberCount,
+                  "subscriptions"
+                )}
               </small>
             </span>
           </span>

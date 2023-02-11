@@ -4,7 +4,7 @@ import { MdOutlineExpandMore } from "react-icons/md";
 
 interface IPagginationBarProps {
   onPageChange: MouseEventHandler;
-  totalPages?: number;
+  totalPages: number;
   currentPage?: number;
 }
 function PagginationBar({
@@ -20,7 +20,7 @@ function PagginationBar({
         </small>
         <small>From</small>
         <small className="min-w-fit bg-sky-500 px-3 rounded-md !text-blue-900 font-semibold">
-          {counting(totalPages)}
+          {counting(totalPages.toString())}
         </small>
       </div>
       <button

@@ -2,7 +2,7 @@ import { IThumbnailProps, IThumbnailTypes, Iitem } from "@/Models/Youtube";
 import Link from "next/link";
 import React from "react";
 import { IoTvSharp } from "react-icons/io5";
-import { handleAddToRecents } from "@/utils/contants";
+import { formatStampTime, handleAddToRecents } from "@/utils/contants";
 
 interface IVideoCardProps {
   videoData: Iitem;
@@ -58,12 +58,7 @@ function VideoCard({ videoData }: IVideoCardProps) {
             </bdi>
           </Link>
           <small className="opacity-60">
-            {videoData.snippet?.publishTime &&
-              Intl.DateTimeFormat("en-US", {
-                dateStyle: "medium",
-                formatMatcher: "best fit",
-                timeStyle: "medium",
-              }).format(new Date(videoData?.snippet?.publishTime))}
+            {formatStampTime(videoData.snippet.publishTime)}
           </small>
         </div>
       </div>
