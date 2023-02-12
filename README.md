@@ -4,7 +4,7 @@
 
 youtube is a youtube clone application from original " Google YouTube " With most possible youtube functions .
 
-![project-image](https://i.ibb.co/2WGQ5TD/Screenshot-2023-02-12-170908.png)
+![project-image](https://i.postimg.cc/MG7TZ8Bn/Screenshot-2023-02-12-170908.png)
 
 ### With youtube clone, users can do : :information_source:
 
