@@ -75,6 +75,58 @@ export const categoryBar = [
   },
 ];
 
+export const upperbarCategories = [
+  {
+    id: nanoid(4),
+    label: "all",
+    link: "/all",
+  },
+  {
+    id: nanoid(4),
+    label: "music",
+    link: "/music",
+  },
+  {
+    id: nanoid(4),
+    label: "sheikh",
+    link: "/sheikh",
+  },
+  {
+    id: nanoid(4),
+    label: "animated films",
+    link: "/animated-films",
+  },
+  {
+    id: nanoid(4),
+    label: "gaming",
+    link: "/gaming",
+  },
+  {
+    id: nanoid(4),
+    label: "comedy",
+    link: "/comedy",
+  },
+  {
+    id: nanoid(4),
+    label: "eating",
+    link: "/eating",
+  },
+  {
+    id: nanoid(4),
+    label: "recently updated",
+    link: "/recently-updated",
+  },
+  {
+    id: nanoid(4),
+    label: "pop music",
+    link: "/pop-music",
+  },
+  {
+    id: nanoid(4),
+    label: "alahly",
+    link: "/alahly",
+  },
+];
 export function formatStampTime(publishedTime: string) {
   const dateNow = Date.now();
   const deff = dateNow - new Date(publishedTime).getTime();

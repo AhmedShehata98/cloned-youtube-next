@@ -2,7 +2,8 @@ import { IThumbnailProps, IThumbnailTypes, Iitem } from "@/Models/Youtube";
 import Link from "next/link";
 import React from "react";
 import { IoTvSharp } from "react-icons/io5";
-import { formatStampTime, handleAddToRecents } from "@/utils/contants";
+import { formatStampTime } from "@/utils/contants";
+import { handleAddToRecents } from "@/utils/historyStorage";
 
 interface IVideoCardProps {
   videoData: Iitem;
