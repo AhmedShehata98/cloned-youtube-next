@@ -9,7 +9,6 @@ const RecentVideosList = () => {
     if (typeof window !== "undefined") {
       recentvideos.handleGetbackStorage();
       setRecentVideosState(recentvideos.getStorageData);
-      console.log(recentvideos.getStorageData);
     }
   }, []);
 

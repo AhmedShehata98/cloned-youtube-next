@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { IoTvSharp } from "react-icons/io5";
 import { formatStampTime } from "@/utils/contants";
-import { handleAddToRecents } from "@/utils/historyStorage";
+import { recentvideos } from "@/features/globalRecentVideosData";
 
 interface IVideoCardProps {
   videoData: Iitem;
@@ -21,7 +21,7 @@ function VideoCard({ videoData }: IVideoCardProps) {
         title={`Go to video ${videoData?.snippet?.title}`}
         className="w-full h-fit aspect-video flex items-center justify-center rounded-sm"
         onClick={() => {
-          handleAddToRecents(videoData);
+          recentvideos.handleAddToStorage(videoData);
         }}
       >
         <img

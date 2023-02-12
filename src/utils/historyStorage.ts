@@ -1,8 +1,5 @@
 import { Iitem } from "@/Models/Youtube";
 
-export const watchLaterVideosLocalStorageKey = "watch-later-videos";
-export const watchLatervideosData: Iitem[] = [];
-
 // const isDuplicated = (videoData: Iitem) => {
 //   return recentvideos.find(
 //     (video) => video.snippet.title === videoData.snippet.title
