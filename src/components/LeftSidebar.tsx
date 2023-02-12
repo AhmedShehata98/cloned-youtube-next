@@ -59,7 +59,7 @@ function LeftSidebar({ show }: ILeftSidebarProps) {
               <SidebarLink
                 label={category.label}
                 icon={category.icon}
-                key={idx}
+                key={category.icon}
                 isActive={isActive}
                 href={{
                   pathname: "/explore",

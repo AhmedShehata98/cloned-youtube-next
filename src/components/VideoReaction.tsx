@@ -2,14 +2,15 @@ import { IVideoDetails } from "@/Models/Youtube";
 import { counting } from "@/utils/contants";
 import { useEffect, useState } from "react";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
-import { BsFillBookmarkPlusFill, BsThreeDots } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
+import { MdOutlineAddToQueue, MdReportProblem } from "react-icons/md";
+// import {handleAddToRecents} from '@/utils/historyStorage';
 import {
   IoCheckmarkCircleOutline,
   IoDownloadOutline,
   IoShareSocialOutline,
   IoShareSocialSharp,
 } from "react-icons/io5";
-import { MdReportProblem } from "react-icons/md";
 
 interface IVideoReactionProps {
   videoDetailsData: IVideoDetails;
@@ -61,7 +62,7 @@ function VideoReaction({
         <small>download</small>
       </button>
       <button
-        className="flex justify-center items-center rounded-full shadow-md bg-gray-300 dark:bg-zinc-900 px-4 py-1 gap-2 hover:bg-stone-300 hover:dark:bg-zinc-800 hover:first-of-type:!text-red-700 dark:hover:first-of-type:!text-red-400 capitalize dark:text-white font-semibold"
+        className="hidden lg:flex justify-center items-center rounded-full shadow-md bg-gray-300 dark:bg-zinc-900 px-4 py-1 gap-2 hover:bg-stone-300 hover:dark:bg-zinc-800 hover:first-of-type:!text-red-700 dark:hover:first-of-type:!text-red-400 capitalize dark:text-white font-semibold"
         onClick={(e) => shareLink()}
       >
         {isCopeid && (
@@ -86,12 +87,12 @@ function VideoReaction({
           <div className="yt-options">
             <ul className="yt-options-list">
               <button type="button" className="yt-option-btn">
-                <BsFillBookmarkPlusFill />
+                <MdOutlineAddToQueue />
                 <p className="text-sm capitalize">watch later</p>
               </button>
               <button
                 type="button"
-                className="yt-option-btn"
+                className="md:hidden yt-option-btn"
                 onClick={(e) => shareLink()}
               >
                 {isCopeid && (

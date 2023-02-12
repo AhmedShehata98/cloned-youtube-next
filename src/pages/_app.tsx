@@ -7,12 +7,10 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/LeftSidebar";
 import { useRouter } from "next/dist/client/router";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import AppDrawer from "@/components/AppDrawer";
-import { handleGetbackVideoRecents } from "@/utils/historyStorage";
 import NavigationBtns from "@/components/NavigationBtns";
 
 export default function App({ Component, pageProps }: AppProps) {
