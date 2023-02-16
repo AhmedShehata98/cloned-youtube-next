@@ -11,30 +11,28 @@ function ChannelCard({ channel }: IChannelCardProps) {
     <Link
       href={{
         pathname: "/channels",
-        query: { channelId: channel.id.channelId },
+        query: { channelId: channel?.channelId },
       }}
       className="yt-card bg-gray-200 dark:border-gray-400 dark:bg-zinc-800 shadow-sm border border-gray-300 overflow-hidden"
     >
       <div className="w-full flex flex-col items-center justify-start gap-2 p-2 bg-gray-100 dark:bg-zinc-900 border-t-4  border-red-500">
         <figure className="w-16 rounded-full aspect-square overflow-hidden ">
           <img
-            src={channel?.snippet.thumbnails.default.url}
+            src={channel?.thumbnail?.[0].url}
             alt="channel-thumb.jpg"
             className="w-full aspect-square"
           />
         </figure>
         <span className="flex flex-col border-b-2">
-          <b className="text-sm text-center mb-1">
-            {channel?.snippet.channelTitle}
-          </b>
+          <b className="text-sm text-center mb-1">{channel?.channelTitle}</b>
           <small className="font-mediums opacity-80">
-            {channel?.snippet?.channelId}
+            {channel?.channelId}
           </small>
         </span>
       </div>
       <div className="flex flex-col px-3 py-2">
         <p className="font-normal text-sm capitalize opacity-80">
-          {channel?.snippet.description}
+          {channel?.description}
         </p>
       </div>
     </Link>

@@ -27,7 +27,7 @@ function ChannelsListWrapper({
 
   function fitlerDataGetChannels(data: IYTVideosResponse) {
     const channels =
-      isFetched && !isError && data.items.filter((item) => item.id.channelId);
+      isFetched && !isError && data.data.filter((item) => item?.channelId);
 
     return channels;
   }

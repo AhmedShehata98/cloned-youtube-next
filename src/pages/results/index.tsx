@@ -3,15 +3,12 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { videosByCategoryFetcher } from "@/services/api/youtubeAPI";
-import SearchResultVideoCard from "@/components/SearchResultVideoCard";
 import ErrorFetchingData from "@/components/ErrorFetchingData";
 import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 import YTSearchResultsList from "@/components/YTSearchResultsList";
 import { GetServerSideProps } from "next";
 import { IYTVideosResponse } from "@/Models/Youtube";
-import PlayListSearchResultCard from "@/components/PlayListSearchResultCard";
 import ChannelSearchResultCard from "@/components/ChannelSearchResultCard";
-import PagginationBar from "@/components/PagginationBar";
 import VideoCard from "@/components/VideoCard";
 import PlayListCard from "@/components/PlayListCard";
 
