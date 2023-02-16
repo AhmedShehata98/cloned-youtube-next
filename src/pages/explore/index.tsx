@@ -37,6 +37,16 @@ const VideosList = ({
     keepPreviousData: true,
   });
 
+  if (isError) {
+    return (
+      <>
+        <Head>
+          <title>Cloned Youtube | {category}</title>
+        </Head>
+        <ErrorFetchingData />
+      </>
+    );
+  }
   return (
     <>
       <Head>
@@ -53,20 +63,12 @@ const VideosList = ({
           data={categoryVideos!}
           isFetched={isFetched}
           isLoading={isLoading}
-          isError={isError}
-          isPaused={isPaused}
           renderPlaylistItem={(playlist) => (
             <PlayListCard playListData={playlist} />
           )}
           renderVideosItem={(video) => <VideoCard videoData={video} />}
           renderChannelItem={(channel) => <ChannelCard channel={channel} />}
           LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
-          ErrorComponent={<ErrorFetchingData />}
-        />
-        <PagginationBar
-          currentPage={pageNumber}
-          totalPages={0}
-          onPageChange={() => setPageNumber((prev) => (prev += 6))}
         />
       </div>
     </>

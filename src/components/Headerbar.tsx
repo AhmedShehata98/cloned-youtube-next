@@ -110,7 +110,7 @@ function Headerbar({ setShowSidebar }: IHeaderbarProps) {
           {!showInputSearch && <Logo />}
         </div>
         <form
-          className={`flex-1 hidden lg:flex-none lg:w-2/5 lg:flex items-center justify-start rounded-full mx-2 overflow-hidden ${
+          className={`search-form ${
             showInputSearch && "!flex"
           } bg-zinc-200 dark:bg-zinc-600`}
           onSubmit={(ev: FormEvent<HTMLFormElement>) => {

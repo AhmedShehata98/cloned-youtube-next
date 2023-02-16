@@ -2,7 +2,7 @@ import { IThumbnailProps, IThumbnailTypes, Iitem } from "@/Models/Youtube";
 import Link from "next/link";
 import React from "react";
 import { IoTvSharp } from "react-icons/io5";
-import { formatStampTime } from "@/utils/contants";
+import { counting, formatStampTime } from "@/utils/contants";
 import { recentvideos } from "@/features/globalRecentVideosData";
 export const COLLECTED_VIDEO_DATA_LS_KEY = "collected-video-data";
 
@@ -34,9 +34,22 @@ function VideoCard({ videoData, layout }: IVideoCardProps) {
           />
         </Link>
         <div className="yt-videocard-details">
-          <span className="w-[18%] aspect-square bg-red-300 rounded-full flex justify-center items-center">
-            <IoTvSharp className="leading-3 text-slate-900" />
-          </span>
+          <Link
+            href={{
+              pathname: "/channels",
+              query: {
+                channelId: videoData.channelId,
+              },
+            }}
+            title={`Go to channel ${videoData?.channelTitle}`}
+            className="w-1/5 aspect-square rounded-full flex justify-center items-center"
+          >
+            <img
+              src={videoData.channelThumbnail?.[0]?.url}
+              alt="channel-image"
+              className="rounded-full object-cover object-center aspect-square"
+            />
+          </Link>
           <div className="w-4/5 flex flex-col">
             <Link
               href={{
@@ -91,28 +104,35 @@ function VideoCard({ videoData, layout }: IVideoCardProps) {
               pathname: "/watch",
               query: { vidId: videoData.videoId },
             }}
-            className="leading-5 h-10 overflow-hidden font-medium text-lg dark:text-white mb-1"
+            className="leading-5 h-10 overflow-hidden font-medium text-lg dark:text-white"
           >
             {videoData.title}
           </Link>
-          <small className="opacity-70 font-medium">
-            {videoData.publishedText}
-          </small>
-          <span className="flex justify-start items-center gap-2">
-            <i className="fi fi-rr-desktop-wallpaper leading-3 bg-slate-900 text-red-400 p-2 rounded-full aspect-square inline-block"></i>
-            <Link
-              href={{
-                pathname: "/channels",
-                query: {
-                  channelId: videoData.channelId,
-                },
-              }}
-              className="uppercase font-semibold opacity-80 dark:text-white text-sm"
-              title={`Go to ${videoData.channelTitle} channel`}
-            >
-              {videoData.channelTitle}
-            </Link>
+          <span className="flex items-center justify-start gap-3 my-2">
+            <small className="font-bold">{counting(videoData.viewCount)}</small>
+            <small className="opacity-70 font-medium">
+              {videoData.publishedText}
+            </small>
           </span>
+          <Link
+            href={{
+              pathname: "/channels",
+              query: {
+                channelId: videoData.channelId,
+              },
+            }}
+            className="flex justify-start items-center gap-2 my-auto"
+            title={`Go to ${videoData.channelTitle} channel`}
+          >
+            <img
+              src={videoData.channelThumbnail?.[0].url}
+              alt="channel-image"
+              className="rounded-full object-cover object-center aspect-square w-9"
+            />
+            <bdi className="uppercase font-semibold opacity-80 dark:text-white text-sm">
+              {videoData.channelTitle}
+            </bdi>
+          </Link>
           <small>{videoData.description}</small>
         </div>
       </div>

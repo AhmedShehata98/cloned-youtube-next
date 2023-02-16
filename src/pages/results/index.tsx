@@ -33,12 +33,21 @@ const SearchResults = ({ searchQueryInitialData }: ISearchResultsProps) => {
     keepPreviousData: true,
   });
 
+  if (isError) {
+    return (
+      <>
+        <Head>
+          <title>{search_query} - YouTube Cloned </title>
+        </Head>
+        <ErrorFetchingData />
+      </>
+    );
+  }
   return (
     <>
       <Head>
         <title>{search_query} - YouTube Cloned </title>
       </Head>
-
       <div className="w-full lg:w-[calc(100%-14.5rem)] mx-auto">
         <YTSearchResultsList
           title={`${search_query}`}

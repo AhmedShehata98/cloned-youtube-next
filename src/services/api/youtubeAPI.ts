@@ -2,12 +2,13 @@ import { IYTVideosResponse } from "@/Models/Youtube";
 import axios from "axios";
 
 const API_URL: string = "https://youtube-v3-alternative.p.rapidapi.com";
+const API_URL_Secondary: string = "https://youtube-v31.p.rapidapi.com";
 const ENDPOINTS = {
   captions: "/captions",
   search: "/search",
   videoComments: "/commentThreads",
   videosDetails: "/videos",
-  channelDetails: "/channels",
+  channelDetails: "/channel",
   playlistDetails: "/playlists",
 };
 const getByCategoryOptions = (query: string, pageNumber: number = 25) => ({
@@ -27,13 +28,11 @@ const channelEndpointOptions = (channelId: string) => ({
   method: "GET",
   url: `${API_URL}${ENDPOINTS.channelDetails}`,
   params: {
-    part: "id,snippet",
     id: channelId,
-    regionCode: "EG",
   },
   headers: {
     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
-    "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+    "X-RapidAPI-Host": API_URL.split("https://")[1],
   },
 });
 console.log(`${API_URL}/${ENDPOINTS.channelDetails}`);

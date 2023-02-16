@@ -67,54 +67,25 @@ export interface ISuggestVideoItems {
   };
 }
 
-export interface IChannelDetails {
-  brandingSettings: {
-    channel: {
-      country: string;
-      defaultLanguage: string;
-      description: string;
-      keywords: string;
-      title: string;
-      unsubscribedTrailer: string;
-    };
-    image: {
-      bannerExternalUrl: string;
-    };
+export interface IChannelMetaData {
+  title: string;
+  description: string;
+  thumbnail: Array<IThumbnailProps>;
+  image: {
+    banner: Array<IThumbnailProps>;
+    tvBanner: Array<IThumbnailProps>;
+    mobileBanner: Array<IThumbnailProps>;
   };
-  contentDetails: {
-    relatedPlaylists: {
-      likes: string;
-      uploads: string;
-    };
-  };
-  id: string;
-  kind: string;
-  snippet: {
-    title: string;
-    country: string;
-    customUrl: string;
-    defaultLanguage: string;
-    description: string;
-    localized: {
-      title: string;
-      description: string;
-    };
-    publishedAt: string;
-  };
-  statistics: {
-    viewCount: string;
-    subscriberCount: string;
-    hiddenSubscriberCount: boolean;
-    videoCount: string;
-  };
+  subscriberCount: string;
+  keywords: Array<string>;
+  isFamilySafe: boolean;
+  availableCountries: Array<string>;
 }
 export interface IYtChannel {
-  kind: string;
-  pageInfo: {
-    totalResults: number;
-    resultsPerPage: number;
-  };
-  items: IChannelItem[];
+  meta: IChannelMetaData;
+  data: Iitem[];
+  continuation: string;
+  msg: "";
 }
 
 export interface IVideoDetails {

@@ -1,4 +1,4 @@
-import { Iitem, IChannelDetails } from "@/Models/Youtube";
+import { Iitem } from "@/Models/Youtube";
 import { getChannelDetails } from "@/services/api/youtubeAPI";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

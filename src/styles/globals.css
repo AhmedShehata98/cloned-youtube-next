@@ -19,7 +19,7 @@
 @tailwind components;
 @layer components {
   .yt-container {
-    @apply w-full mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
+    @apply w-full mx-auto sm:max-w-xl md:px-4 md:max-w-2xl lg:max-w-7xl;
   }
   .show-sidebar {
     @apply !translate-x-0 !opacity-100 transition-all;
@@ -28,13 +28,16 @@
     @apply !opacity-100 !translate-x-0  transition-all;
   }
   .yt-card {
-    @apply flex flex-col rounded-sm basis-full sm:basis-[48%] md:basis-[30%] lg:basis-[24%] shadow-sm overflow-hidden transition-transform duration-500 hover:-translate-y-1.5;
+    @apply flex flex-col rounded-md basis-full sm:basis-[48%] md:basis-[30%] lg:basis-[24%] shadow-sm overflow-hidden transition-transform duration-500 hover:-translate-y-1.5;
   }
   .prevent-scroll {
     @apply max-h-screen fixed inset-0;
   }
   .yt-header {
     @apply sticky top-0 z-40 w-full h-14 flex justify-between items-center bg-white dark:bg-zinc-700 shadow-md border-b dark:border-gray-500 px-2 lg:px-0;
+  }
+  .search-form {
+    @apply flex-1 hidden lg:flex-none lg:w-2/5 lg:flex items-center justify-start rounded-sm border border-gray-300 dark:border-zinc-500 mx-2 overflow-hidden;
   }
   .sidebar-menu {
     @apply hidden lg:flex w-56 sticky top-20;
