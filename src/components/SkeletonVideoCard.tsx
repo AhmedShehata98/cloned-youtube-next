@@ -13,7 +13,7 @@ export default function SkeletonVideoCard({
     return (
       <div
         key={nanoid(8)}
-        className="rounded-sm shadow-md overflow-hidden mb-2"
+        className="rounded-sm shadow-md overflow-hidden mb-2 mt-4"
       >
         <figure className="aspect-video rounded w-full bg-zinc-500 dark:bg-black"></figure>
         <div className="flex flex-col gap-2 bg-gray-100 dark:bg-zinc-800 w-full px-3 pb-4">
