@@ -8,7 +8,7 @@ export const COLLECTED_VIDEO_DATA_LS_KEY = "collected-video-data";
 
 interface IVideoCardProps {
   videoData: Iitem;
-  layout: "column" | "row";
+  layout?: "column" | "row";
 }
 function VideoCard({ videoData, layout }: IVideoCardProps) {
   if (layout === "row" || layout === undefined) {

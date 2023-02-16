@@ -6,7 +6,12 @@ import {
   getRelatedVideosFetcher,
   getVideoDetailsFetcher,
 } from "@/services/api/youtubeAPI";
-import { dehydrate, QueryClient, useQueries } from "@tanstack/react-query";
+import {
+  dehydrate,
+  isError,
+  QueryClient,
+  useQueries,
+} from "@tanstack/react-query";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
@@ -17,6 +22,8 @@ import YtDescriptionBox from "@/components/YtDescriptionBox";
 import VideoReaction from "@/components/VideoReaction";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import VideoInformation from "@/components/VideoInformation";
+import SkeletonVideoPage from "@/components/SkeletonVideoPage";
+import ErrorFetchingData from "@/components/ErrorFetchingData";
 
 const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
   const {
@@ -30,6 +37,7 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
       data,
       isFetched: isFetchedVideoDetails,
       isLoading: isLoadingVideoDetails,
+      isError: isErrorVideoDetails,
     },
     {
       data: relatedVideos,
@@ -52,6 +60,9 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
   const videoDetailsData: IVideoDetails = data as IVideoDetails;
   const relatedVideosData: IYtSuggestVideos = relatedVideos as IYtSuggestVideos;
 
+  if (isLoadingVideoDetails) {
+    return <SkeletonVideoPage />;
+  }
   return (
     <>
       <Head>
@@ -72,7 +83,7 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
             {videoDetailsData.items?.[0]?.snippet.localized.title}
           </bdi>
           {/* video content wrapper */}
-          <div className="video-content-wrapper relative">
+          <div className="video-content-wrapper">
             <VideoInformation videoDetailsData={videoDetailsData} />
             <VideoReaction
               videoDetailsData={videoDetailsData}
@@ -88,18 +99,22 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
             isLoading={isLoadingVideoDetails}
           />
         </div>
-        {/* <RelatedVideosList
-          isLoading={isLoadingRelatedVideos}
-          isFetched={isFetchedRelatedVideos}
-          relatedVideosData={relatedVideosData}
-          renderVideosList={(video) => (
-            <RelatedVideosCard relatedVideo={video} />
-          )}
-          renderPlaylistList={(playlist) => (
-            <PlayListCard playListData={playlist} layout="column" />
-          )}
-          skeltonLoading={(id) => <SkeletonVideoCard id={id.toString()} />}
-        /> */}
+        {isErrorVideoDetails ? (
+          <ErrorFetchingData />
+        ) : (
+          <RelatedVideosList
+            isLoading={isLoadingRelatedVideos}
+            isFetched={isFetchedRelatedVideos}
+            relatedVideosData={relatedVideosData}
+            renderVideosList={(video) => (
+              <RelatedVideosCard relatedVideo={video} />
+            )}
+            renderPlaylistList={(playlist) => (
+              <PlayListCard playListData={playlist} layout="column" />
+            )}
+            skeltonLoading={(id) => <SkeletonVideoCard id={id.toString()} />}
+          />
+        )}
       </article>
     </>
   );

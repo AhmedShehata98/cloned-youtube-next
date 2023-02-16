@@ -132,5 +132,8 @@
   .video-wrapper {
     @apply w-full lg:w-[60%];
   }
+  .video-wrapper-loading {
+    @apply w-full lg:w-[60%] mt-6 px-3 lg:p-0;
+  }
 }
 @tailwind utilities;

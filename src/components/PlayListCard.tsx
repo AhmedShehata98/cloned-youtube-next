@@ -4,7 +4,7 @@ import React from "react";
 
 interface IPlayListCardProps {
   playListData: Iitem;
-  layout: "column" | "row";
+  layout?: "column" | "row";
 }
 
 function PlayListCard({ playListData, layout }: IPlayListCardProps) {

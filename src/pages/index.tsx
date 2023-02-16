@@ -18,7 +18,6 @@ import ChannelCard from "@/components/ChannelCard";
 import PlayListCard from "@/components/PlayListCard";
 import CategoriesUpperbar from "@/components/CategoriesUpperbar";
 import { useState } from "react";
-import PagginationBar from "@/components/PagginationBar";
 
 const Home = ({
   initialHomeData,
@@ -63,11 +62,6 @@ const Home = ({
           renderChannelItem={(channel) => <ChannelCard channel={channel} />}
           LoadingIndicator={(id) => <SkeletonVideoCard id={id} />}
           ErrorComponent={<ErrorFetchingData />}
-        />
-        <PagginationBar
-          totalPages={0}
-          currentPage={pageNumber}
-          onPageChange={() => setPageNumber((currentNum) => currentNum + 5)}
         />
       </div>
     </>

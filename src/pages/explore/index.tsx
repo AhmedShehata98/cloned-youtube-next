@@ -43,9 +43,11 @@ const VideosList = ({
         <title>Cloned Youtube | {category}</title>
       </Head>
       <div className="w-full lg:w-[927px] mx-auto">
-        <CategoriesUpperbar
-          categoriesData={categoryVideos?.refinements as Array<string>}
-        />
+        {categoryVideos?.refinements && (
+          <CategoriesUpperbar
+            categoriesData={categoryVideos?.refinements as Array<string>}
+          />
+        )}
         <YTListWrapper
           title={category as string}
           data={categoryVideos!}
