@@ -44,7 +44,9 @@ const Home = ({
         <link rel="icon" href="/youtube-logo-png-2075.png" />
       </Head>
       <div className="w-full lg:w-[927px] mx-auto ">
-        <CategoriesUpperbar />
+        <CategoriesUpperbar
+          categoriesData={data?.refinements as Array<string>}
+        />
         <YTListWrapper
           title={"recommended"}
           data={data}
@@ -63,7 +65,7 @@ const Home = ({
           ErrorComponent={<ErrorFetchingData />}
         />
         <PagginationBar
-          totalPages={data?.pageInfo.totalResults as number}
+          totalPages={0}
           currentPage={pageNumber}
           onPageChange={() => setPageNumber((currentNum) => currentNum + 5)}
         />

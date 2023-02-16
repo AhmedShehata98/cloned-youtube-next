@@ -9,11 +9,6 @@ export interface IThumbnailTypes {
   high: IThumbnailProps;
   medium: IThumbnailProps;
 }
-export interface IChannelThumbnail {
-  medium: IThumbnailProps;
-  default: IThumbnailProps;
-  high: IThumbnailProps;
-}
 export interface IChannelItem {
   kind: string;
   id: string;
@@ -39,7 +34,6 @@ export interface IChannelItem {
     description: string;
     customUrl: string;
     publishedAt: string;
-    thumbnails: IChannelThumbnail;
     localized: {
       title: string;
       description: string;
@@ -106,7 +100,6 @@ export interface IChannelDetails {
       description: string;
     };
     publishedAt: string;
-    thumbnails: IChannelThumbnail;
   };
   statistics: {
     viewCount: string;
@@ -187,43 +180,25 @@ export interface IYtSuggestVideos {
 }
 
 export interface Iitem {
-  kind: string;
-  id: {
-    kind: string;
-    videoId: string;
-    channelId: string;
-    playlistId: string;
-  };
-  snippet: {
-    publishAt: string;
-    channelId: string;
-    title: string;
-    description: string;
-    channelTitle: string;
-    liveBroadcastContent: string;
-    publishTime: string;
-    thumbnails: {
-      default: IThumbnailProps;
-      high: IThumbnailProps;
-      medium: IThumbnailProps;
-    };
-  };
+  type: string;
+  videoId: string;
+  playlistId: string;
+  title: string;
+  channelTitle: string;
+  channelId: string;
+  description: string;
+  viewCount: string;
+  publishedText: string;
+  lengthText: string;
+  thumbnail: IThumbnailProps[];
+  richThumbnail: IThumbnailProps[];
+  channelThumbnail: IThumbnailProps[];
 }
 
 export interface IYTVideosResponse {
-  items: Iitem[];
-  kind: string;
-  nextPageToken: string;
-  regionCode: string;
-  pageInfo: {
-    totalResults: number;
-    resultsPerPage: number;
-  };
-}
-
-export interface IRecentVideos {
-  recentVideosList: {
-    videoDetailsData: IVideoDetails;
-    relatedVideosData: IYtSuggestVideos;
-  }[];
+  continuation: string;
+  estimatedResults: string;
+  data: Iitem[];
+  msg: string;
+  refinements: string[];
 }

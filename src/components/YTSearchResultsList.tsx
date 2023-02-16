@@ -37,11 +37,10 @@ function YTSearchResultsList({
           <h3 className="font-semibold text-lg">{title}</h3>
         </span>
         <ul className="w-full grid grid-flow-row gap-4">
-          {data.items.map((item) => {
-            const kindType = item.id.kind.split("#");
-            if (kindType.includes("video")) return renderVideoItem(item);
-            if (kindType.includes("playlist")) return renderPlaylistItem(item);
-            if (kindType.includes("channel"))
+          {data.data.map((item) => {
+            if (item.type.includes("video")) return renderVideoItem(item);
+            if (item.type.includes("playlist")) return renderPlaylistItem(item);
+            if (item.type.includes("channel"))
               return (
                 <ul>
                   <h3 className="font-medium uppercase text-lg">Channel</h3>

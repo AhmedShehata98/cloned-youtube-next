@@ -12,6 +12,8 @@ import { IYTVideosResponse } from "@/Models/Youtube";
 import PlayListSearchResultCard from "@/components/PlayListSearchResultCard";
 import ChannelSearchResultCard from "@/components/ChannelSearchResultCard";
 import PagginationBar from "@/components/PagginationBar";
+import VideoCard from "@/components/VideoCard";
+import PlayListCard from "@/components/PlayListCard";
 
 interface ISearchResultsProps {
   searchQueryInitialData: IYTVideosResponse;
@@ -52,26 +54,19 @@ const SearchResults = ({ searchQueryInitialData }: ISearchResultsProps) => {
           renderChannelItem={(channel) => (
             <ChannelSearchResultCard
               channelResultData={channel}
-              key={channel.id.channelId}
+              key={channel.channelId}
             />
           )}
           renderPlaylistItem={(playlist) => (
-            <PlayListSearchResultCard
+            <PlayListCard
+              key={playlist.playlistId}
               playListData={playlist}
-              key={playlist.id.playlistId}
+              layout="column"
             />
           )}
           renderVideoItem={(video) => (
-            <SearchResultVideoCard
-              SearchResultData={video}
-              key={video.id.videoId}
-            />
+            <VideoCard key={video.videoId} videoData={video} layout="column" />
           )}
-        />
-        <PagginationBar
-          totalPages={searchResults.pageInfo?.totalResults || 25}
-          currentPage={pageNumber}
-          onPageChange={() => setPageNumber((prev) => (prev += 5))}
         />
       </div>
     </>

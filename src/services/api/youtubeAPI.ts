@@ -1,7 +1,7 @@
 import { IYTVideosResponse } from "@/Models/Youtube";
 import axios from "axios";
 
-const API_URL: string = "https://youtube-v31.p.rapidapi.com";
+const API_URL: string = "https://youtube-v3-alternative.p.rapidapi.com";
 const ENDPOINTS = {
   captions: "/captions",
   search: "/search",
@@ -14,15 +14,13 @@ const getByCategoryOptions = (query: string, pageNumber: number = 25) => ({
   method: "GET",
   url: `${API_URL}${ENDPOINTS.search}`,
   params: {
-    part: "id,snippet",
-    q: query,
-    maxResults: pageNumber,
-    regionCode: "EG",
-    order: "date",
+    query: query,
+    geo: "EG",
+    lang: "en",
   },
   headers: {
     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
-    "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+    "X-RapidAPI-Host": API_URL.split("https://")[1],
   },
 });
 const channelEndpointOptions = (channelId: string) => ({
@@ -58,8 +56,6 @@ const getVideoDetailsOptions = (videoId: string) => ({
   method: "GET",
   url: `${API_URL}${ENDPOINTS.videosDetails}`,
   params: {
-    part: "contentDetails,snippet,statistics",
-    regionCode: "EG",
     id: videoId,
   },
   headers: {

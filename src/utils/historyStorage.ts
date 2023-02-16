@@ -37,9 +37,7 @@ export class HistoryStorage {
   }
 
   isDuplicated(videoData: Iitem) {
-    return this.storage.find(
-      (video) => video.snippet.title === videoData.snippet.title
-    );
+    return this.storage.find((video) => video.videoId === videoData.videoId);
   }
 
   handleAddToStorage(item: Iitem) {

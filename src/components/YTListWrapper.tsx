@@ -54,13 +54,12 @@ function YTListWrapper({
       <div className="min-w-full h-fit p-3 mb-3 flex flex-col gap-2">
         <h4 className="mb-3 capitalize text-lg font-semibold">{`${title} videos`}</h4>
         <ul className={`min-w-full h-fit flex flex-wrap gap-3`}>
-          {data!.items.map((item) => {
-            const itemKind = item.id.kind.split("#");
-            if (itemKind.includes("video")) {
+          {data!.data.map((item) => {
+            if (item.type.includes("video")) {
               return renderVideosItem!(item);
-            } else if (itemKind.includes("playlist")) {
+            } else if (item.type.includes("playlist")) {
               return renderPlaylistItem!(item);
-            } else if (itemKind.includes("channel")) {
+            } else if (item.type.includes("channel")) {
               return renderChannelItem!(item);
             }
           })}

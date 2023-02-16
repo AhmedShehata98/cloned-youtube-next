@@ -73,7 +73,7 @@
     @apply w-full lg:w-[927px] mx-auto flex gap-3 justify-between flex-wrap;
   }
   .video-content-wrapper {
-    @apply w-full h-fit py-2 flex flex-col gap-2 p-2 mb-3;
+    @apply relative w-full h-fit py-2 flex flex-col md:flex-row lg:items-end justify-between gap-2 p-2 mb-4;
   }
   .channel-info-box {
     @apply w-full md:w-fit flex gap-2;
@@ -128,6 +128,9 @@
   }
   .yt-option-btn {
     @apply w-full flex items-center justify-start gap-3 px-2 py-1 hover:bg-zinc-400 hover:dark:bg-zinc-500;
+  }
+  .video-wrapper {
+    @apply w-full lg:w-[60%];
   }
 }
 @tailwind utilities;

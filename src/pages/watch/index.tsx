@@ -16,6 +16,7 @@ import SkeletonVideoCard from "@/components/SkeletonVideoCard";
 import YtDescriptionBox from "@/components/YtDescriptionBox";
 import VideoReaction from "@/components/VideoReaction";
 import { IoCheckmarkCircle } from "react-icons/io5";
+import VideoInformation from "@/components/VideoInformation";
 
 const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
   const {
@@ -61,40 +62,24 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
       <article
         className={`watch-video-page ${notPages && "!w-full"} mt-4 px-2`}
       >
-        <div className="w-full lg:w-[60%]">
+        <div className="video-wrapper">
           <ReactPlayer
             width={"100%"}
             controls
             url={`https://www.youtube.com/watch?v=${videoDetailsData?.items?.[0].id}`}
           />
+          <bdi className="inline-block text-xl font-medium mt-3 mb-1 pl-3">
+            {videoDetailsData.items?.[0]?.snippet.localized.title}
+          </bdi>
           {/* video content wrapper */}
-          <div className="video-content-wrapper">
-            <h3 className="font-semibold text-lg capitalize">
-              {videoDetailsData?.items?.[0].snippet.localized.title}
-            </h3>
-            <div className="relative max-w-full flex justify-between md:items-center flex-col md:flex-row gap-3 flex-wrap pt-2 pb-3 ">
-              {/* channel info box */}
-              <div className="channel-info-box">
-                <figure className="w-8 md:w-11 h-8 md:h-11 grid place-content-center bg-red-400 rounded-full">
-                  <i className="fi fi-sr-screen leading-3 text-xl"></i>
-                </figure>
-                <div className="flex items-center justify-center gap-2">
-                  <b className="opacity-70 leading-5 h-8 overflow-hidden">
-                    {videoDetailsData?.items?.[0].snippet.channelTitle}
-                  </b>
-                  {videoDetailsData?.items?.[0].contentDetails
-                    .licensedContent && (
-                    <IoCheckmarkCircle className="text-xl text-zinc-500 dark:text-zinc-200 mb-2" />
-                  )}
-                </div>
-              </div>
-              <VideoReaction
-                videoDetailsData={videoDetailsData}
-                likedCount={videoDetailsData.items?.[0].statistics.likeCount}
-                isFetched={isFetchedVideoDetails}
-                isLoading={isLoadingVideoDetails}
-              />
-            </div>
+          <div className="video-content-wrapper relative">
+            <VideoInformation videoDetailsData={videoDetailsData} />
+            <VideoReaction
+              videoDetailsData={videoDetailsData}
+              likedCount={videoDetailsData.items?.[0].statistics.likeCount}
+              isFetched={isFetchedVideoDetails}
+              isLoading={isLoadingVideoDetails}
+            />
           </div>
           {/* discription box */}
           <YtDescriptionBox
@@ -103,7 +88,7 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
             isLoading={isLoadingVideoDetails}
           />
         </div>
-        <RelatedVideosList
+        {/* <RelatedVideosList
           isLoading={isLoadingRelatedVideos}
           isFetched={isFetchedRelatedVideos}
           relatedVideosData={relatedVideosData}
@@ -111,10 +96,10 @@ const VideoDetails: NextPage<{ videoData: IVideoDetails }> = (props) => {
             <RelatedVideosCard relatedVideo={video} />
           )}
           renderPlaylistList={(playlist) => (
-            <PlayListCard playListData={playlist} />
+            <PlayListCard playListData={playlist} layout="column" />
           )}
           skeltonLoading={(id) => <SkeletonVideoCard id={id.toString()} />}
-        />
+        /> */}
       </article>
     </>
   );

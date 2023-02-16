@@ -47,7 +47,7 @@ function VideoReaction({
   }, [isCopeid]);
 
   return (
-    <div className="w-full md:w-fit flex md:justify-end gap-3 overflow-hidden">
+    <div className="w-full md:w-max flex items-center md:justify-end gap-1 overflow-hidden">
       <span className="reaction-wrapper">
         <button className="like-reaction">
           <p>{counting(likedCount, "")}</p>

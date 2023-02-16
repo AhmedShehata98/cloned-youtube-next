@@ -43,7 +43,9 @@ const VideosList = ({
         <title>Cloned Youtube | {category}</title>
       </Head>
       <div className="w-full lg:w-[927px] mx-auto">
-        <CategoriesUpperbar />
+        <CategoriesUpperbar
+          categoriesData={categoryVideos?.refinements as Array<string>}
+        />
         <YTListWrapper
           title={category as string}
           data={categoryVideos!}
@@ -61,7 +63,7 @@ const VideosList = ({
         />
         <PagginationBar
           currentPage={pageNumber}
-          totalPages={categoryVideos?.pageInfo.totalResults as number}
+          totalPages={0}
           onPageChange={() => setPageNumber((prev) => (prev += 6))}
         />
       </div>
