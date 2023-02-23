@@ -16,7 +16,7 @@ function PlaylistWrapper({playlistVideosData,isFetched,isLoading}: IPlaylistWrap
     </div>)
   }
   return (
-      <ol className={"w-full md:w-2/3 list-decimal max-h-[85vh] overflow-y-auto my-5 px-3 divide-y-2 divide-zinc-500"}>
+      <ol className={"w-full lg:w-2/3 list-decimal max-h-[85vh] overflow-y-auto mx-auto my-1 mb-16 lg:my-5 px-3 divide-y-2 divide-zinc-500"}>
         {
             isFetched && playlistVideosData.map((video)=>(
                 <PlaylistVideoCard key={video.index} videoData={video}/>
