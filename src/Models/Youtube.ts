@@ -173,3 +173,28 @@ export interface IYTVideosResponse {
   msg: string;
   refinements: string[];
 }
+export interface IPlayListVideos {
+  videoId: string;
+  title: string;
+  index: string;
+  lengthSeconds: string;
+  lengthText: string;
+  videoOwnerChannelTitle: string;
+  videoOwnerChannelId: string;
+  thumbnail: Array<IThumbnailProps>;
+}
+export interface IPlaylist {
+  meta: {
+    title: string;
+    description: string;
+    thumbnail: string;
+    videoCount: string;
+    viewCount: string;
+    lastUpdated: string;
+    avatar: Array<IThumbnailProps>;
+    channelTitle: string;
+    channelId: string;
+  };
+  continuation: string;
+  data: Array<IPlayListVideos>;
+}

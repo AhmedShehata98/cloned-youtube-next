@@ -10,6 +10,16 @@ const nextConfig = {
   compiler: {
     removeConsole: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+        port: '',
+      },
+    ],
+  },
+
 };
 
 module.exports = nextConfig;

@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const [LoadingScreen, setLoadingScreen] = useState<boolean>(false);
-  const { events, isReady, pathname } = useRouter();
+  const { events, isReady, pathname ,asPath} = useRouter();
 
   useEffect(() => {
     events.on("routeChangeStart", () => {
@@ -45,7 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* <AppDrawer showing={showSidebar} /> */}
         <main className="min-h-screen w-full flex justify-center items-center bg-gray-50 dark:bg-zinc-700">
           <section className="yt-container min-h-screen flex flex-row items-start justify-start">
-            {!pathname.includes("/watch") && <LeftSidebar show={showSidebar} />}
+            {! (pathname=== "/watch" || pathname=== "/playlist") && <LeftSidebar show={showSidebar} />}
             <Component {...pageProps} />
           </section>
         </main>

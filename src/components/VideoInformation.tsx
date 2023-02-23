@@ -11,7 +11,7 @@ function VideoInformation({ videoDetailsData }: IVideoInformationProps) {
   React.useEffect(() => {
     const lsVideoData = JSON.parse(
       localStorage.getItem(recentVideosLocalStorageKey)!
-    ).slice(0, 1) as Iitem[];
+    )?.slice(0, 1) as Iitem[];
     if (lsVideoData) {
       setChannelImage(lsVideoData?.[0].channelThumbnail?.[0]?.url);
     }

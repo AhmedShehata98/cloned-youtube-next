@@ -11,7 +11,7 @@ function PlayListCard({ playListData, layout }: IPlayListCardProps) {
   if (layout === "row" || layout === undefined) {
     return (
       <div
-        key={playListData.videoId}
+        key={playListData.playlistId}
         className="relative yt-card shadow-sm border border-gray-300 dark:border-gray-400"
       >
         <div
@@ -26,7 +26,7 @@ function PlayListCard({ playListData, layout }: IPlayListCardProps) {
             href={{
               pathname: "/playlist",
               query: {
-                listId: playListData?.playlistId,
+                listId: playListData.playlistId,
               },
             }}
             className="w-full aspect-video"
@@ -43,7 +43,7 @@ function PlayListCard({ playListData, layout }: IPlayListCardProps) {
             href={{
               pathname: "/playlist",
               query: {
-                listId: playListData?.playlistId || playListData.videoId,
+                listId: playListData?.playlistId,
               },
             }}
           >
@@ -67,7 +67,7 @@ function PlayListCard({ playListData, layout }: IPlayListCardProps) {
           href={{
             pathname: "/playlist",
             query: {
-              list: playListData.playlistId,
+              listId: playListData.playlistId,
             },
           }}
           className="relative w-full md:w-[35%]"
@@ -106,7 +106,7 @@ function PlayListCard({ playListData, layout }: IPlayListCardProps) {
           <Link
             href={{
               pathname: "/playlist",
-              query: { list: playListData.playlistId },
+              query: { listId: playListData.playlistId },
             }}
             className="inline-block text-sm capitalize mt-auto text-black dark:text-white"
           >

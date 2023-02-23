@@ -9,7 +9,7 @@ const ENDPOINTS = {
   videoComments: "/commentThreads",
   videosDetails: "/videos",
   channelDetails: "/channel",
-  playlistDetails: "/playlists",
+  playlistDetails: "/playlist",
 };
 const getByCategoryOptions = (query: string, pageNumber: number = 25) => ({
   method: "GET",
@@ -35,7 +35,7 @@ const channelEndpointOptions = (channelId: string) => ({
     "X-RapidAPI-Host": API_URL.split("https://")[1],
   },
 });
-console.log(`${API_URL}/${ENDPOINTS.channelDetails}`);
+
 const getChannelVideosOptions = (channelID: string) => ({
   method: "GET",
   url: `${API_URL}${ENDPOINTS.search}`,
@@ -80,47 +80,71 @@ const playlistVideosOptions = (playlistID: string) => ({
   method: "GET",
   url: `${API_URL}${ENDPOINTS.playlistDetails}`,
   params: {
-    part: "snippet",
-    maxResults: "30",
-    regionCode: "EG",
-    playlistId: playlistID,
+    id: playlistID,
   },
-  "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+  headers:{
   "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
+  "X-RapidAPI-Host": API_URL.split("https://")[1],
+  }
+
 });
 // deffinition of fetcher's function's "GETTING FROM API"
 const videosByCategoryFetcher = async (
   categoty: string = "New",
   pageNumber?: number
 ) => {
-  const res = await axios.request(getByCategoryOptions(categoty, pageNumber));
-  const data: IYTVideosResponse = await res.data;
-  return data;
+  try {
+    const res = await axios.request(getByCategoryOptions(categoty, pageNumber));
+    const data: IYTVideosResponse = await res.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 const getChannelDetails = async (channelId: string) => {
-  const res = await axios.request({ ...channelEndpointOptions(channelId) });
-  const data = await res.data;
-  return data;
+  try {
+    const res = await axios.request({ ...channelEndpointOptions(channelId) });
+    const data = await res.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 const getChannelVideosFetcher = async (channelId: string) => {
-  const res = await axios.request({ ...getChannelVideosOptions(channelId) });
-  const data = await res.data;
-  return data;
+  try {
+    const res = await axios.request({ ...getChannelVideosOptions(channelId) });
+    const data = await res.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 const getVideoDetailsFetcher = async (videoId: string) => {
-  const res = await axios.request({ ...getVideoDetailsOptions(videoId) });
-  const data = await res.data;
-  return data;
+  try {
+    const res = await axios.request({ ...getVideoDetailsOptions(videoId) });
+    const data = await res.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 const getRelatedVideosFetcher = async (videoId: string) => {
-  const res = await axios.request({ ...getRelatedVideosOptions(videoId) });
-  const data = await res.data;
-  return data;
+  try {
+    const res = await axios.request({ ...getRelatedVideosOptions(videoId) });
+    const data = await res.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 const getPlaylistFetcher = async (playlistID: string) => {
-  const res = await axios.request({ ...playlistVideosOptions(playlistID) });
-  const data = await res.data;
-  return data;
+  try {
+    const res = await axios.request({ ...playlistVideosOptions(playlistID) });
+    const data = await res.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 };
 
 // ------------------- exports functions and properties ------------------------
